@@ -27,12 +27,14 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { LoginComponent } from './login/pages/login/login.component';
 import { RegisterComponent } from './register/pages/register/register.component';
+import { HomeComponent } from './home/pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
