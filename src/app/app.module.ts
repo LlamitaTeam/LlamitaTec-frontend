@@ -27,6 +27,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { LoginComponent } from './login/pages/login/login.component';
 import { RegisterComponent } from './register/pages/register/register.component';
+import { EmployeesComponent } from './employees/pages/employees/employees.component';
+import { ServicesComponent } from './services/pages/services/services.component';
 import { HomeComponent } from './home/pages/home/home.component';
 import { ProfileComponent } from './profile/pages/profile/profile.component';
 import { ProfileEmployeeComponent } from './profile/pages/profile-employee/profile-employee.component';
@@ -41,6 +43,8 @@ import { PaymentComponent } from './payment/pages/payment/payment.component';
     ProfileComponent,
     ProfileEmployeeComponent,
     PaymentComponent,
+    EmployeesComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,
