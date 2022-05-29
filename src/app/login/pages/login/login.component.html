@@ -1,0 +1,35 @@
+<mat-grid-list cols="2" rowHeight="2:2">
+    <mat-grid-tile> 
+      <div class="body">
+        <div class="login">
+          <h1 class="h3 mb-3 fw-normal">Bienvenido a LLamita Tec</h1>
+          <p>LOGIN</p>
+          <form [formGroup]="loginForm">
+            <mat-form-field class="ancho" appearance="fill">
+              <mat-label>Correo</mat-label>
+              <input autocomplete="off" matInput placeholder="Tu email" formControlName="email" required>
+              <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
+              <mat-error *ngIf="email?.errors?.['email'] && !email?.errors?.['required']">Email is not valid</mat-error>
+            </mat-form-field>
+            <mat-form-field class="ancho" appearance="fill">
+              <mat-label>Contraseña</mat-label>
+              <input autocomplete="off" type="password" matInput placeholder="Tu contraseña" formControlName="password" required>
+              <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
+              <mat-error *ngIf="password?.errors?.['minLength'] && !password?.errors?.['required']">Password must be at least 6 characters </mat-error>
+            </mat-form-field>
+  
+            <br>
+            <button (click)="signIn()" mat-raised-button mat-button color="primary" class="ancho button" ><u>Iniciar sesión</u></button>
+            <br><br>
+  
+            <mat-label><a [routerLink]="'/register'">¿No tienes una cuenta?, Registrate!</a></mat-label>
+            <br><br>
+          </form>
+        </div>
+      </div>
+    </mat-grid-tile>
+  
+    <mat-grid-tile><img src="https://i.ibb.co/ZxNWb0s/lla.png"></mat-grid-tile>
+  
+  </mat-grid-list>
+  
