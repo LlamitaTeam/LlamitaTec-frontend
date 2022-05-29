@@ -1,0 +1,18 @@
+<div class="content-text">
+    <h1>Servicios</h1>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="content">
+    <mat-card class="Ccard" *ngFor="let service of services">
+        <img class="Ccard-image" mat-card-image [src]="service.urlToImage" alt="Photo of a service">
+        <mat-card-content>
+          <p> {{service.name}}</p>
+          <p> {{service.description}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="button"  [routerLink]="['/employees', service.id]" mat-raised-button>SEE ALL EMPLOYEES</button>
+        </mat-card-actions>
+    </mat-card>         
+</div>
