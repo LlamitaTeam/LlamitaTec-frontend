@@ -1,0 +1,56 @@
+/*content*/
+
+.content{
+  display: block;
+  margin-top: 20px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .content{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    justify-items: center;
+    grid-template-rows: auto auto auto;
+    column-gap: 20px;
+    width: 60%;
+  }
+}
+
+.Ccard{
+  background-color: white;
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 20px;
+  /*box-shadow: 0px 5px 32px -2px rgba(0,0,0,0.27);*/
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.Ccardalone{
+  margin: 0 auto;
+  margin-top: 20px;
+  padding-top: 10rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .Ccard{
+    margin: 0;
+    margin-top: 20px;
+  }
+}
+
+.content-text{
+  margin-top: 30px;
+  text-align: center;
+}
+
+.content-text h1{
+  font-size: 50px;
+}
+
+.margin{
+  margin: 30px auto;
+}
