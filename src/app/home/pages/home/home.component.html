@@ -1,1 +1,31 @@
-<p>home works!</p>
+<div class="content-text">
+  <h1>Bienvenido Usuario!</h1>
+  <h2>Tus solicitudes realizadas: </h2>
+</div>
+
+<mat-divider></mat-divider>
+<div class="Ccardalone" *ngIf="request.length === 0">
+  <h1>VAYA, PARECE QUE AUN NO HA REALIZADO NINGUNA SOLICITUD</h1>
+</div>
+
+<div class="content">
+  <mat-card class="Ccard" *ngFor="let item of request">
+    <img class="Ccard-image" mat-card-image [src]="item.urlToImage" alt="Photo of a employee">
+    <mat-card-header>
+      <mat-card-title>{{item.title}} número {{item.id}} </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      {{item.description}}
+    </mat-card-content>
+
+    <div *ngIf="item.payed==false">
+      <mat-card-actions>
+        <button class="button" mat-raised-button [routerLink]="['/payment', item.id]">Pay</button>
+        <button class="button" mat-raised-button (click)="deleteRequest(item.id)">Cancel</button>
+      </mat-card-actions>
+    </div>
+
+    <h2 *ngIf="item.payed">Gracias por usar nuestros servicios!</h2>
+  </mat-card>
+</div>
