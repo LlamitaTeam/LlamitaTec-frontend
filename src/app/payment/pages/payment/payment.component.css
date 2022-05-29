@@ -1,0 +1,117 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .grupo{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 24px;
+    gap: 10px;
+  }
+  
+  .right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  button{
+    margin: 1rem;
+    background: #1C58AE;
+    border-radius: 6px;
+    color: white;
+    width: 185px;
+    height: 56px;
+  }
+  
+  p{
+    margin-top: 1rem;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .subtitle{
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 30px;
+    letter-spacing: -0.02em;
+  }
+  
+  .title{
+    margin-bottom: 5rem;
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 30px;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+  
+  @media (min-width: 768px) {
+      .box{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: row;
+        }
+  }
+  
+  img{
+    width: 413px;
+    height: 377px;
+    margin-left: 3rem;
+  }
+  
+  /*register-card*/
+  .box2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .subgroup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  .m-r-1{
+    margin-right: 3.5rem;
+  }
+  
+  .m-l-1{
+    margin-left: 3.5rem;
+  }
+  
+  mat-form-field{
+    width: 100%;
+  }
+  
+  .carta{
+    width: 100%;
+  }
+  
+  .box3{
+    width: 35%;
+  }
