@@ -7,10 +7,10 @@ import {catchError, Observable, retry, throwError} from "rxjs";
 })
 export class ServicesService {
 
-  basePath = 'https://6291cebfcd0c91932b684d6e.mockapi.io/services';
+  basePath = 'https://my-json-server.typicode.com/Williamz21/llamita/services';
 
   constructor(private http: HttpClient) { }
-
+  
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
