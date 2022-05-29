@@ -1,1 +1,130 @@
-<p>payment works!</p>
+<!--<body *ngIf="showNext==false && showDialog==false">
+    <h1 class="title">Realizando Pago - Métodos de Pago</h1>
+    <section class="box">
+      <div class="left">
+        <img src="assets/Plumber.jpg">
+      </div>
+      <div class="right">
+        <h2 class="subtitle">Seleccione el método de pago:</h2>
+        <mat-radio-group class="grupo" aria-label="Select an option">
+          <p>
+            <mat-radio-button value="1">Pago con tarjeta</mat-radio-button>
+          </p>
+          <p>
+            <mat-radio-button value="2">Pago en Efectivo</mat-radio-button>
+          </p>
+        </mat-radio-group>
+        <div class="btns">
+          <button mat-button [routerLink]="'/home'">Volver</button>
+          <button mat-button (click)="showNext=!showNext">Continuar</button>
+        </div>
+      </div>
+    </section>
+</body>-->
+
+<body *ngIf="showNext==false && showDialog==false">
+    <h1 class="title">Realizando Pago - Registro de tarjeta</h1>
+    <form [formGroup]="paymentForm">
+        <div class="box2">
+        <mat-form-field appearance="outline">
+            <mat-label>Seleccionar Tipo de Tarjeta</mat-label>
+            <mat-select formControlName="type" required>
+            <mat-option *ngFor="let card of cards" [value]="card.value" >
+                {{ card.viewValue}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Nombres</mat-label>
+            <input autocomplete="off" type="text" matInput formControlName="name" required>
+            <mat-error *ngIf="name?.errors?.['required']">Name is required</mat-error>
+            <mat-error *ngIf="name?.errors?.['minLength'] && !name?.errors?.['required']">Name must have at least 6 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Apellidos</mat-label>
+            <input autocomplete="off" type="text" matInput formControlName="lastname" required>
+            <mat-error *ngIf="lastname?.errors?.['required']">Name is required</mat-error>
+            <mat-error *ngIf="lastname?.errors?.['minLength'] && !lastname?.errors?.['required']">Name must have at least 6 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>DNI/N° Pasaporte</mat-label>
+            <input autocomplete="off" matInput formControlName="dni" required>
+            <mat-error *ngIf="dni?.errors?.['required']">DNI is required</mat-error>
+            <mat-error *ngIf="dni?.errors?.['pattern'] && !dni?.errors?.['required']">Only numbers allowed</mat-error>
+            <mat-error *ngIf="!dni?.errors?.['required']">DNI must be valid</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Numero de Tarjeta</mat-label>
+            <input autocomplete="off" type="number" matInput formControlName="numberCard" required>
+            <mat-error *ngIf="numberCard?.errors?.['required']">Number Card is required</mat-error>
+            <mat-error *ngIf="!numberCard?.errors?.['required']">Number Card must be valid</mat-error>
+        </mat-form-field>
+        <div class="subgroup">
+            <mat-form-field class="m-r-1" appearance="outline">
+            <mat-label>CCV</mat-label>
+            <input autocomplete="off" matInput formControlName="csv" required>
+            <mat-error *ngIf="csv?.errors?.['required']">Number is required</mat-error>
+            <mat-error *ngIf="csv?.errors?.['pattern'] && !csv?.errors?.['required']">Only numbers allowed</mat-error>
+            <mat-error *ngIf="!csv?.errors?.['required']">Number must be valid</mat-error>
+            </mat-form-field>
+            <mat-form-field class="m-l-1" appearance="outline">
+            <mat-label>Fecha</mat-label>
+            <input autocomplete="off" type="date" matInput formControlName="date" required>
+            </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline">
+            <mat-label>Dirección</mat-label>
+            <input autocomplete="off" type="text" matInput formControlName="address" required>
+            <mat-error *ngIf="address?.errors?.['required']">Name is required</mat-error>
+            <mat-error *ngIf="address?.errors?.['minLength'] && !address?.errors?.['required']">Address is too short</mat-error>
+        </mat-form-field>
+        </div>
+
+        <div class="btns">
+        <button mat-button [routerLink]="'/home'">Cancelar</button>
+        <button mat-button (click)="showDialog=!showDialog" [disabled]="!paymentForm.valid">Confirmar</button>
+        </div>
+
+    </form>
+</body>
+
+<body *ngIf="showDialog">
+    <h1 class="title">Realizando Pago - Detalles de Servicio</h1>
+    <div class="box3">
+    <mat-card class="carta">
+      <mat-card-content>
+        <div class="resultados">
+          <h2>Nombres y Apellidos:</h2>
+          <p>{{client.name}}</p>
+        </div>
+        <div class="resultados">
+          <h2>Nombre del Técnico:</h2>
+          <p>{{employee.name}}</p>
+        </div>
+        <div class="resultados">
+          <h2>Resumen del Servicio:</h2>
+          <p>{{itemData.description}}</p>
+        </div>
+        <div class="resultados">
+          <h2>Dirección:</h2>
+          <p>{{client.adress}}</p>
+        </div>
+        <div class="resultados">
+          <h2>Fecha:</h2>
+          <p>01/01/2022</p>
+        </div>
+        <div class="resultados">
+          <h2>Monto a Pagar:</h2>
+          <p>s/. 50.00</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    </div>
+    <div class="btns">
+      <button mat-button mat-button (click)="showDialog=!showDialog">Cancelar</button>
+      <button mat-button (click)="updateRequest()">Confirmar</button>
+    </div>
+</body>
+    
+
+    
