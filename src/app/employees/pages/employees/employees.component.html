@@ -1,0 +1,26 @@
+<div class="content-text">
+    <h1>Trabajadores</h1>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="content">
+    <mat-card class="Ccard" *ngFor="let item of employees">
+        <img class="Ccard-image" mat-card-image [src]="item.urlToImage" alt="Photo of a employee">
+        <mat-card-content>
+            
+            <h3 style="font-weight: bold;">Employee's information</h3>
+                {{item.name}}
+            <h3 style="font-weight: bold;">Contact</h3>
+
+            <ul>
+                <li>{{item.email}}</li>
+                <li>{{item.number}}</li>
+                <li>{{item.altnumber}}</li>
+            </ul>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="button" mat-raised-button [routerLink]="['/employees/information', item.id]">MORE INFORMATION</button>
+        </mat-card-actions>
+    </mat-card>     
+</div>
