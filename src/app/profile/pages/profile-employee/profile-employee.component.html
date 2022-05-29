@@ -1,0 +1,31 @@
+<div class="content-text">
+    <h1>Profile</h1>
+</div>
+
+<mat-divider></mat-divider>
+<div class="content">
+    <mat-card class="Ccard" >
+    <img class="Ccard-image" mat-card-image [src]="employee.urlToImage" alt="Photo of a employee">
+    <mat-card-content>
+        <h3>Your information</h3>
+            {{employee.name}}
+        <h3>Contact</h3>
+        <ul>
+            <li>{{employee.email}}</li>
+            <li>{{employee.number}}</li>
+            <li>{{employee.altnumber}}</li>
+        </ul>
+    </mat-card-content>
+    </mat-card>
+</div>
+<div class="content">
+    <mat-card class="Ccard2">
+        <mat-card-content>
+            <h3>Details</h3>
+            {{employee.description}}
+        </mat-card-content>
+        </mat-card>
+</div>
+<section class="button margin">
+    <button mat-raised-button (click)="addNewRequest(employee.id,employee.serviceId,employee.name,employee.urlToImage)">REQUEST</button>
+</section>
