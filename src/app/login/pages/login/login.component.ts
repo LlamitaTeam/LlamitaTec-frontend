@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {LoginService} from "../../services/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -6,10 +9,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  
+  message: string =""
 
-  constructor() { }
+  loginForm :FormGroup= this.builder.group({
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
 
+  constructor(public builder: FormBuilder, public authService: LoginService, public router: Router) {
+
+  }
   ngOnInit(): void {
   }
 
+  get email() { return this.loginForm.controls['email'];}
+  get password() { return this.loginForm.controls['password'];}
+
+  signIn(){
+    this.authService.signIn(this.loginForm.value).subscribe((response: any) =>{
+      localStorage.setItem('accessToken', JSON.stringify(response.accessToken));
+      localStorage.setItem('currentUser', JSON.stringify(response.user));
+      this.loginForm.reset();
+      console.log(`accessToken: ${localStorage.getItem('accessToken')}`);
+      this.router.navigate(['home']).then();
+    });
+  }
 }
