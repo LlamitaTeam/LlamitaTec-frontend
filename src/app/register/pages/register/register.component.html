@@ -1,0 +1,64 @@
+<mat-grid-list cols="2" rowHeight="2:2">
+  <mat-grid-tile> <div class="body">
+    <div class="login">
+      <h1 class="h3 mb-3 fw-normal">Bienvenido a LLamita Tec</h1>
+      <p>Registrarse fácil y sencillo</p>
+      <form [formGroup]="registerForm">
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Nombres y Apellidos</mat-label>
+          <input autocomplete="off" matInput placeholder="Tu nombre completo" formControlName="name" required>
+          <mat-error *ngIf="name?.errors?.['required']">Name is required</mat-error>
+          <mat-error *ngIf="name?.errors?.['minLength'] && !name?.errors?.['required']">Name must have at least 6 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Edad</mat-label>
+          <input autocomplete="off" matInput placeholder="Tu edad" formControlName="age" required>
+          <mat-error *ngIf="age?.errors?.['required']">Age is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Numero</mat-label>
+          <input autocomplete="off" matInput placeholder="Tu Numero" formControlName="number" required>
+          <mat-error *ngIf="number?.errors?.['required']">Number is required</mat-error>
+          <mat-error *ngIf="number?.errors?.['pattern'] && !number?.errors?.['required']">Only numbers allowed</mat-error>
+          <mat-error *ngIf="!number?.errors?.['required']">Number must be valid</mat-error>
+        </mat-form-field>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Correo</mat-label>
+          <input autocomplete="off" matInput placeholder="Tu email" formControlName="email" required>
+          <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
+          <mat-error *ngIf="email?.errors?.['email'] && !email?.errors?.['required']">Email is not valid</mat-error>
+        </mat-form-field>
+        <mat-form-field class="ancho" appearance="fill" *ngIf="registerForm.value.typeUser=='employee'" >
+          <mat-label>Seleccione el servicio que ofrecera</mat-label>
+          <mat-select formControlName="serviceId">
+            <mat-option value=1>Electricity</mat-option>
+            <mat-option value=2>Plumbing</mat-option>
+            <mat-option value=3>Computer repair</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input autocomplete="off" type="password" matInput placeholder="Tu contraseña" formControlName="password" required>
+          <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
+          <mat-error *ngIf="password?.errors?.['minLength'] && !password?.errors?.['required']">Password must have at least 6 characters </mat-error>
+        </mat-form-field>
+        <div>
+          <mat-radio-group formControlName="typeUser" required>
+            <mat-radio-button class="margin" value="employee">Employee</mat-radio-button>
+            <mat-radio-button value="client">Client</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <br>
+        <button (click)="addNewuser()" mat-raised-button mat-button color="primary" class="ancho button" ><u>Registrarse</u></button>
+        <br><br>
+
+        <mat-label><a [routerLink]="'/login'">¿Ya tienes una cuenta?</a></mat-label>
+        <br><br>
+      </form>
+    </div>
+  </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile><div class="login-grid-tile" *ngIf={}><img src="https://i.ibb.co/ZxNWb0s/lla.png"></div></mat-grid-tile>
+
+</mat-grid-list>
