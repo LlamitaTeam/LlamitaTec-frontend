@@ -37,6 +37,7 @@ import { PaymentComponent } from './payment/pages/payment/payment.component';
 import { ProfileEmployeeUserComponent } from './profile/pages/profile-employee-user/profile-employee-user.component';
 import { HomeEmployeeComponent } from './home/pages/home-employee/home-employee.component';
 import { CancelDialogComponent } from './dialogs/pages/cancel-dialog/cancel-dialog.component';
+import { AddrequestDialogComponent } from './dialogs/pages/addrequest-dialog/addrequest-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { CancelDialogComponent } from './dialogs/pages/cancel-dialog/cancel-dial
     ServicesComponent,
     ProfileEmployeeUserComponent,
     HomeEmployeeComponent,
-    CancelDialogComponent
+    CancelDialogComponent,
+    AddrequestDialogComponent
   ],
   imports: [
     BrowserModule,
