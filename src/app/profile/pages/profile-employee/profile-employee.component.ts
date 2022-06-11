@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import { Employee } from '../../model/employee';
 import { Request } from '../../../profile/model/request';
 import { Client } from '../../model/client';
+import {MatDialog} from '@angular/material/dialog';
+import { AddrequestDialogComponent } from 'src/app/dialogs/pages/addrequest-dialog/addrequest-dialog.component';
 
 @Component({
   selector: 'app-profile-employee',
@@ -17,7 +19,7 @@ export class ProfileEmployeeComponent implements OnInit {
   requests:Array<any> = [];
   itemData : Request= new Request();
 
-  constructor(private route: ActivatedRoute, private newProfileEService: ProfileService, public router: Router) { }
+  constructor(private route: ActivatedRoute, private newProfileEService: ProfileService, public router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getProfiles();
@@ -52,6 +54,7 @@ export class ProfileEmployeeComponent implements OnInit {
   }
 
   addNewRequest(employeeId: number,serviceId: number, name: string, urlToImage: string) {
+    this.itemData = new Request();
     let request = this.requests.pop().id;
     this.itemData.id = request + 1;
     this.itemData.title = `Servicio solicitado por ${this.client.name}`;
@@ -62,11 +65,12 @@ export class ProfileEmployeeComponent implements OnInit {
     this.itemData.urlToImage = urlToImage;
     this.itemData.payed = false;
 
-    this.newProfileEService.createRequest(this.itemData).subscribe( (response: any) => {
-      console.log('item added');
-    })
-    this.itemData = new Request();
-    this.router.navigate(['home']).then();
+    localStorage.setItem('itemData', JSON.stringify(this.itemData));
+    const dialogRef = this.dialog.open(AddrequestDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+
   }
 
 }

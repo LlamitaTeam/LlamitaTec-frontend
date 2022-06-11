@@ -22,7 +22,7 @@
     <div *ngIf="item.payed==false">
       <mat-card-actions>
         <button class="button" mat-raised-button [routerLink]="['/payment', item.id]">Pay</button>
-        <button class="button" mat-raised-button (click)="deleteRequest(item.id)">Cancel</button>
+        <button class="button" mat-raised-button (click)="openDialog(item.id)">Cancel</button>
       </mat-card-actions>
     </div>
 

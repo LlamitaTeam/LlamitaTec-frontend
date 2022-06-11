@@ -24,6 +24,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatTableModule} from "@angular/material/table";
 import { AppRoutingModule } from './app-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { LoginComponent } from './login/pages/login/login.component';
 import { RegisterComponent } from './register/pages/register/register.component';
@@ -35,6 +36,8 @@ import { ProfileEmployeeComponent } from './profile/pages/profile-employee/profi
 import { PaymentComponent } from './payment/pages/payment/payment.component';
 import { ProfileEmployeeUserComponent } from './profile/pages/profile-employee-user/profile-employee-user.component';
 import { HomeEmployeeComponent } from './home/pages/home-employee/home-employee.component';
+import { CancelDialogComponent } from './dialogs/pages/cancel-dialog/cancel-dialog.component';
+import { AddrequestDialogComponent } from './dialogs/pages/addrequest-dialog/addrequest-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,9 @@ import { HomeEmployeeComponent } from './home/pages/home-employee/home-employee.
     EmployeesComponent,
     ServicesComponent,
     ProfileEmployeeUserComponent,
-    HomeEmployeeComponent
+    HomeEmployeeComponent,
+    CancelDialogComponent,
+    AddrequestDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +81,7 @@ import { HomeEmployeeComponent } from './home/pages/home-employee/home-employee.
     MatSortModule,
     MatTableModule,
     MatSidenavModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
