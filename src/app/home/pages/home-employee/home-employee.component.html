@@ -38,7 +38,7 @@
         <ng-container matColumnDef="buttons">
             <th mat-header-cell *matHeaderCellDef> Action</th>
             <td mat-cell *matCellDef="let element">
-                <button class="button" (click)="deleteRequest(element.id)" mat-raised-button>Cancel request</button>
+                <button class="button" (click)="openDialog(element.id)" mat-raised-button>Cancel request</button>
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
