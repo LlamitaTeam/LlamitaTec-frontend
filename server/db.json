@@ -94,8 +94,8 @@
       "age": 30,
       "serviceId": 3,
       "email": "rock.romero@gmail.com",
-      "number": 999999999,
-      "altnumber": 20309,
+      "number": "997873602",
+      "altnumber": "20301",
       "urlToImage": "https://i.ibb.co/vX5cvbn/compute-Repairer.jpg",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In vero amet fugiat repudiandae aut similique odit natus maxime praesentium.  Exercitationem magnam ullam aliquid beatae cupiditate nesciunt sed est! Tempore corporis id, voluptatum dolores fuga ex recusandae inventore, est molestiae soluta quia, ipsa sunt ducimus voluptatibus sint quaerat."
     }
@@ -180,8 +180,8 @@
   "request": [
     {
       "id": 1,
-      "title": "SERVICIO",
-      "description": "SERVICIO de Darwin Sara",
+      "title": "Servicio solicitado por William Garcia",
+      "description": "Servicio de Darwin Sara",
       "serviceId": 1,
       "employeeId": 5,
       "clientId": 1,
@@ -190,43 +190,13 @@
     },
     {
       "id": 2,
-      "title": "SERVICIO",
+      "title": "Servicio solicitado por William's Romero",
       "description": "Servicio de Darwin Sara",
       "serviceId": 1,
       "employeeId": 5,
-      "clientId": 14,
+      "clientId": 4,
       "urlToImage": "https://i.ibb.co/tKRLHZP/Electrician.jpg",
       "payed": false
-    },
-    {
-      "id": 3,
-      "title": "SERVICIO",
-      "description": "Servicio de Darwin Sara",
-      "serviceId": 1,
-      "employeeId": 5,
-      "clientId": 4,
-      "urlToImage": "https://i.ibb.co/tKRLHZP/Electrician.jpg",
-      "payed": true
-    },
-    {
-      "id": 4,
-      "title": "SERVICIO",
-      "description": "Servicio de Carlos Velasquez",
-      "serviceId": 1,
-      "employeeId": 11,
-      "clientId": 4,
-      "urlToImage": "https://i.ibb.co/tKRLHZP/Electrician.jpg",
-      "payed": true
-    },
-    {
-      "id": 5,
-      "title": "SERVICIO",
-      "description": "Servicio de Rody Velasquez",
-      "serviceId": 1,
-      "employeeId": 8,
-      "clientId": 4,
-      "urlToImage": "https://i.ibb.co/tKRLHZP/Electrician.jpg",
-      "payed": true
     }
   ],
   "users": [

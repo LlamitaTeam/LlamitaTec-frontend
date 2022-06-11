@@ -33,6 +33,8 @@ import { HomeComponent } from './home/pages/home/home.component';
 import { ProfileComponent } from './profile/pages/profile/profile.component';
 import { ProfileEmployeeComponent } from './profile/pages/profile-employee/profile-employee.component';
 import { PaymentComponent } from './payment/pages/payment/payment.component';
+import { ProfileEmployeeUserComponent } from './profile/pages/profile-employee-user/profile-employee-user.component';
+import { HomeEmployeeComponent } from './home/pages/home-employee/home-employee.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { PaymentComponent } from './payment/pages/payment/payment.component';
     ProfileEmployeeComponent,
     PaymentComponent,
     EmployeesComponent,
-    ServicesComponent
+    ServicesComponent,
+    ProfileEmployeeUserComponent,
+    HomeEmployeeComponent
   ],
   imports: [
     BrowserModule,

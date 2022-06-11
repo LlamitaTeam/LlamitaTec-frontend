@@ -28,6 +28,16 @@ export class HomeService {
     return throwError('Something happened with request, please try again later');
   }
 
+  getCurrentUserType(){
+    let currentUserString= localStorage.getItem('currentUser')
+    if(currentUserString){
+      //console.log(`current user:' ${currentUserString}`)
+      let currentUser = (JSON.parse(currentUserString));
+      //console.log(currentUser)
+      return currentUser.typeuser;
+    }else return null
+  }
+
   getAll() {
     return this.http.get(this.basePath, this.httpOptions)
       .pipe(
@@ -37,11 +47,20 @@ export class HomeService {
   }
 
   getById(id: any) {
-    return this.http.get(`http://localhost:3000/clients/${id}/request`, this.httpOptions)
+    if(this.getCurrentUserType()=='employee'){
+      return this.http.get(`http://localhost:3000/employees/${id}/request`, this.httpOptions)
+        .pipe(
+          retry(2),
+          catchError(this.handleError)
+        )
+    }
+    else{
+      return this.http.get(`http://localhost:3000/clients/${id}/request`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
+    }
   }
   deleteById(id: any) {
     return this.http.delete(`http://localhost:3000/request/${id}`, this.httpOptions)
@@ -50,4 +69,12 @@ export class HomeService {
         catchError(this.handleError)
       )
   }
+  getClientById(id: any) {
+    return this.http.get(`http://localhost:3000/clients/${id}`, this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
+
 }

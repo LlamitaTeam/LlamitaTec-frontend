@@ -3,6 +3,7 @@ import { ProfileService } from '../../services/profile.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import { Employee } from '../../model/employee';
 import { Request } from '../../../profile/model/request';
+import { Client } from '../../model/client';
 
 @Component({
   selector: 'app-profile-employee',
@@ -12,6 +13,7 @@ import { Request } from '../../../profile/model/request';
 export class ProfileEmployeeComponent implements OnInit {
 
   employee:Employee= new Employee();
+  client: Client = new Client();
   requests:Array<any> = [];
   itemData : Request= new Request();
 
@@ -20,6 +22,7 @@ export class ProfileEmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.getProfiles();
     this.getAllRequests();
+    this.getCurrentUser();
   }
 
   getProfiles() {
@@ -42,10 +45,16 @@ export class ProfileEmployeeComponent implements OnInit {
     }else return null
   }
 
+  getCurrentUser(){
+    this.newProfileEService.getClient(this.getCurrentUserId()).subscribe( (response: any) => {
+      this.client= response;
+    })
+  }
+
   addNewRequest(employeeId: number,serviceId: number, name: string, urlToImage: string) {
     let request = this.requests.pop().id;
     this.itemData.id = request + 1;
-    this.itemData.title = "SERVICIO";
+    this.itemData.title = `Servicio solicitado por ${this.client.name}`;
     this.itemData.description = `Servicio de ${name}`;
     this.itemData.serviceId = serviceId;
     this.itemData.employeeId = employeeId;

@@ -2,13 +2,13 @@
   <router-outlet></router-outlet>
 </div>
 
-<div *ngIf="getCurrentUserEmail()" class="all">
+<div *ngIf="getCurrentUserEmail() === 'client'" class="all">
 <mat-toolbar class="nav-bar" *ngIf="router.url !== '/login'">
     <button mat-icon-button class="bar-icon" aria-label="Nav-bar icon" (click)="opened=!opened">
       <mat-icon>menu</mat-icon>
     </button>
   
-    <span>LlamitaTEC</span>
+    <span>LlamitaTEC - {{getCurrentUserEmail()}}</span>
     <span class="spacer"></span>
   </mat-toolbar>
   
@@ -33,3 +33,32 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+
+<div *ngIf="getCurrentUserEmail() === 'employee'" class="all">
+  <mat-toolbar class="nav-bar" *ngIf="router.url !== '/login'">
+      <button mat-icon-button class="bar-icon" aria-label="Nav-bar icon" (click)="opened=!opened">
+        <mat-icon>menu</mat-icon>
+      </button>
+    
+      <span>LlamitaTEC - {{getCurrentUserEmail()}}</span>
+      <span class="spacer"></span>
+    </mat-toolbar>
+    
+    <mat-sidenav-container>
+      <mat-sidenav [(opened)]="opened">
+          <section class="button">
+          <button [routerLink]="'/homeemployee'" (click)="opened=!opened" class="button" mat-raised-button>Home</button>
+          </section>
+          <section class="button">
+          <button [routerLink]="'/profileemployee'" (click)="opened=!opened" mat-raised-button>Profile</button>
+          </section>
+          <section class="button">
+          <button mat-raised-button (click)="signOut()">Log-out</button>
+          </section>
+      </mat-sidenav>
+      
+      <mat-sidenav-content>
+          <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
