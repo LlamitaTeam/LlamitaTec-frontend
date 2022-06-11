@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Employee } from '../../model/employee';
 import { ProfileService } from '../../services/profile.service';
-import {Router} from "@angular/router";
-import { Client } from '../../model/client';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-profile-employee-user',
+  templateUrl: './profile-employee-user.component.html',
+  styleUrls: ['./profile-employee-user.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileEmployeeUserComponent implements OnInit {
+
   edit=false;
-  client:Client= new Client();
-  itemData: Client = new Client();
+  employee:Employee= new Employee();
+  itemData: Employee = new Employee();
 
   profileForm :FormGroup= this.builder.group({
     number: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(9),Validators.minLength(9)], updateOn: 'change'}],
@@ -48,37 +49,33 @@ export class ProfileComponent implements OnInit {
 
   getProfiles() {
     this.newProfileService.getById(this.getCurrentUserId()).subscribe( (response: any) => {
-      this.client = response;
+      this.employee = response;
     })
   }
 
   UpdateProfile() {
-    this.itemData.id = this.client.id;
-    this.itemData.name = this.client.name;
-    this.itemData.age = this.client.age;
-    this.itemData.email = this.client.email;
+    this.itemData.id = this.employee.id;
+    this.itemData.name = this.employee.name;
+    this.itemData.age = this.employee.age;
+    this.itemData.email = this.employee.email;
+    this.itemData.serviceId = this.employee.serviceId;
     if(this.profileForm.value.number==""){
-      this.itemData.number = this.client.number;
+      this.itemData.number = this.employee.number;
     }else{
       this.itemData.number = this.profileForm.value.number;
     }
     if(this.profileForm.value.altnumber==""){
-      this.itemData.altnumber = this.client.altnumber;
+      this.itemData.altnumber = this.employee.altnumber;
     }else{
       this.itemData.altnumber = this.profileForm.value.altnumber;
     }
-    if(this.profileForm.value.adress==""){
-      this.itemData.adress = this.client.adress;
-    }else{
-      this.itemData.adress = this.profileForm.value.adress;
-    }
     if(this.profileForm.value.description==""){
-      this.itemData.description = this.client.description;
+      this.itemData.description = this.employee.description;
     }else{
       this.itemData.description = this.profileForm.value.description;
     }
     if(this.profileForm.value.urlToImage==""){
-      this.itemData.urlToImage = this.client.urlToImage;
+      this.itemData.urlToImage = this.employee.urlToImage;
     }else{
       this.itemData.urlToImage = this.profileForm.value.urlToImage;
     }
@@ -86,8 +83,10 @@ export class ProfileComponent implements OnInit {
       console.log('item updated');
       console.log(response);
     })
-    this.itemData = new Client();
+    this.itemData = new Employee();
     this.edit!=this.edit
     window.location.reload();
   }
+
 }
+

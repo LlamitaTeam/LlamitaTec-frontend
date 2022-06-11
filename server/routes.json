@@ -2,5 +2,6 @@
   "/api/v1/*" : "/$1",
   "/services/:id/request\\id=:id": "/request",
   "/services/:id/employees\\id=:id": "/employees",
-  "/clients/:id/request\\id=:id": "/request"
+  "/clients/:id/request\\id=:id": "/request",
+  "/employees/:id/request\\id=:id": "/request"
 }

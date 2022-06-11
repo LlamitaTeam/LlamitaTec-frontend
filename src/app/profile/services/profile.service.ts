@@ -38,15 +38,40 @@ export class ProfileService {
       )
   }
 
+  getCurrentUserType(){
+    let currentUserString= localStorage.getItem('currentUser')
+    if(currentUserString){
+      //console.log(`current user:' ${currentUserString}`)
+      let currentUser = (JSON.parse(currentUserString));
+      //console.log(currentUser)
+      return currentUser.typeuser;
+    }else return null
+  }
 
   getById(id: any) {
-    return this.http.get(`http://localhost:3000/clients/${id}`, this.httpOptions)
+    if(this.getCurrentUserType()=='employee'){
+      return this.http.get(`http://localhost:3000/employees/${id}`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
+    }
+    else{
+      return this.http.get(`http://localhost:3000/clients/${id}`, this.httpOptions)
+        .pipe(
+          retry(2),
+          catchError(this.handleError)
+        )
+    }
   }
 
+  getClient(id: any){
+    return this.http.get(`http://localhost:3000/clients/${id}`, this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
   getByEmployeeId(id: any) {
     return this.http.get(`http://localhost:3000/employees/${id}`, this.httpOptions)
       .pipe(
@@ -72,11 +97,20 @@ export class ProfileService {
   }
 
   updateProfile(id: number, item: object){
-    return this.http.patch(`http://localhost:3000/clients/${id}`,item,this.httpOptions)
-    .pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
+    if(this.getCurrentUserType()=='employee'){
+      return this.http.patch(`http://localhost:3000/employees/${id}`,item,this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+    }
+    else{
+      return this.http.patch(`http://localhost:3000/clients/${id}`,item,this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+    }
   }
 
 }

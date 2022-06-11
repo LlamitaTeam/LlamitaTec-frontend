@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeesComponent } from './employees/pages/employees/employees.component';
+import { HomeEmployeeComponent } from './home/pages/home-employee/home-employee.component';
 import { HomeComponent } from './home/pages/home/home.component';
 
 import { LoginComponent } from './login/pages/login/login.component';
 import { PaymentComponent } from './payment/pages/payment/payment.component';
+import { ProfileEmployeeUserComponent } from './profile/pages/profile-employee-user/profile-employee-user.component';
 import { ProfileEmployeeComponent } from './profile/pages/profile-employee/profile-employee.component';
 import { ProfileComponent } from './profile/pages/profile/profile.component';
 import { RegisterComponent } from './register/pages/register/register.component';
@@ -26,6 +28,10 @@ const routes: Routes = [
   { path: 'employees/information/:id',component:ProfileEmployeeComponent},
   { path: '', redirectTo: '/payment/:id', pathMatch: 'full' },
   { path: 'payment/:id',component:PaymentComponent},
+  { path: '', redirectTo: '/profileemployee', pathMatch: 'full' },
+  { path: 'profileemployee',component:ProfileEmployeeUserComponent},
+  { path: '', redirectTo: '/homeemployee', pathMatch: 'full' },
+  { path: 'homeemployee',component:HomeEmployeeComponent},
 ];
 
 @NgModule({

@@ -17,7 +17,7 @@ export class AppComponent {
       //console.log(`current user:' ${currentUserString}`)
       let currentUser = (JSON.parse(currentUserString));
       //console.log(currentUser)
-      return currentUser.email;
+      return currentUser.typeuser;
     }else return null
   }
 

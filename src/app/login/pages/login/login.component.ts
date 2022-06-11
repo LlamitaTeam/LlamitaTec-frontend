@@ -26,13 +26,28 @@ export class LoginComponent implements OnInit {
   get email() { return this.loginForm.controls['email'];}
   get password() { return this.loginForm.controls['password'];}
 
+  getCurrentUserType(){
+    let currentUserString= localStorage.getItem('currentUser')
+    if(currentUserString){
+      //console.log(`current user:' ${currentUserString}`)
+      let currentUser = (JSON.parse(currentUserString));
+      //console.log(currentUser)
+      return currentUser.typeuser;
+    }else return null
+  }
+
   signIn(){
     this.authService.signIn(this.loginForm.value).subscribe((response: any) =>{
       localStorage.setItem('accessToken', JSON.stringify(response.accessToken));
       localStorage.setItem('currentUser', JSON.stringify(response.user));
       this.loginForm.reset();
       console.log(`accessToken: ${localStorage.getItem('accessToken')}`);
-      this.router.navigate(['home']).then();
+      if(this.getCurrentUserType()=='employee'){
+        this.router.navigate(['homeemployee']).then();
+      }
+      else{
+        this.router.navigate(['home']).then();
+      }
     });
   }
 }
