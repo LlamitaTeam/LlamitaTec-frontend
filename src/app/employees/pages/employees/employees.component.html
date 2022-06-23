@@ -14,13 +14,13 @@
             <h3 style="font-weight: bold;">Contact</h3>
 
             <ul>
-                <li>{{item.email}}</li>
-                <li>{{item.number}}</li>
-                <li>{{item.altnumber}}</li>
+                <li>{{item.user.email}}</li>
+                <li>{{item.phone}}</li>
+                <li>{{item.altphone}}</li>
             </ul>
         </mat-card-content>
         <mat-card-actions>
-            <button class="button" mat-raised-button [routerLink]="['/employees/information', item.id]">MORE INFORMATION</button>
+            <button class="button" mat-raised-button [routerLink]="['/employees/information', item.user.id]">MORE INFORMATION</button>
         </mat-card-actions>
     </mat-card>     
 </div>

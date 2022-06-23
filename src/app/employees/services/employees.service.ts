@@ -7,7 +7,7 @@ import {catchError, Observable, retry, throwError} from "rxjs";
 })
 export class EmployeesService {
 
-  basePath = 'http://localhost:3000/employees';
+  basePath = 'http://localhost:8080/api/v1/employees';
 
   constructor(private http: HttpClient) { }
 
@@ -37,7 +37,7 @@ export class EmployeesService {
   }
 
   getById(id: any) {
-    return this.http.get(`http://localhost:3000/services/${id}/employees`, this.httpOptions)
+    return this.http.get(`${this.basePath}/services/${id}`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

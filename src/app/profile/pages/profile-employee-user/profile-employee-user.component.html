@@ -10,8 +10,9 @@
             <img class="Ccard-image" mat-card-image [src]="employee.urlToImage" alt="Photo of a employee" *ngIf="edit==false">
             <mat-form-field appearance="fill" *ngIf="edit">
                 <mat-label>New img</mat-label>
-                <input autocomplete="off" matInput formControlName="urlToImage" required>
+                <input autocomplete="off" matInput formControlName="urlToImage">
                 <mat-error *ngIf="urlToImage?.errors?.['required']">URL is required</mat-error>
+                <mat-error *ngIf="urlToImage?.errors?.['pattern'] && !urlToImage?.errors?.['required']">The given url is not valid</mat-error>
             </mat-form-field>
         </div>
         <mat-card-content>
@@ -19,23 +20,22 @@
             <div> {{employee.name}} </div>   
             <h3>Contact</h3>
             <ul>
-                <li>{{employee.email}}</li>
-                <li *ngIf="edit==false">{{employee.number}}</li>
+                <li>{{employee.user.email}}</li>
+                <li *ngIf="edit==false">{{employee.phone}}</li>
                 <li  *ngIf="edit">
                     <mat-form-field appearance="fill" *ngIf="edit">
                         <mat-label>New number</mat-label>
-                        <input autocomplete="off" matInput formControlName="number" required>
+                        <input autocomplete="off" matInput formControlName="number">
                         <mat-error *ngIf="number?.errors?.['required']">Number is required</mat-error>
                         <mat-error *ngIf="number?.errors?.['pattern'] && !number?.errors?.['required']">Only numbers allowed</mat-error>
                         <mat-error *ngIf="!number?.errors?.['required']">Number must be valid</mat-error>
                     </mat-form-field>
                 </li>
-                <li *ngIf="edit==false">{{employee.altnumber}}</li>
+                <li *ngIf="edit==false">{{employee.altphone}}</li>
                 <li *ngIf="edit">
                     <mat-form-field appearance="fill">
                         <mat-label>New alternative number</mat-label>
-                        <input autocomplete="off" matInput formControlName="altnumber" required>
-                        <mat-error *ngIf="altnumber?.errors?.['required']">Alt-Number is required</mat-error>
+                        <input autocomplete="off" matInput formControlName="altnumber">
                         <mat-error *ngIf="altnumber?.errors?.['pattern'] && !altnumber?.errors?.['required']">Only numbers allowed</mat-error>
                         <mat-error *ngIf="!altnumber?.errors?.['required']">Alt-Number must be valid</mat-error>
                     </mat-form-field>
@@ -51,8 +51,7 @@
                 <h3>Details</h3>
                 <mat-form-field appearance="fill" *ngIf="edit" class="ancho">
                     <mat-label>New description</mat-label>
-                    <input autocomplete="off" matInput formControlName="description" required>
-                    <mat-error *ngIf="description?.errors?.['required']">Description is required</mat-error>
+                    <input autocomplete="off" matInput formControlName="description">
                     <mat-error *ngIf="description?.errors?.['maxLength'] && !description?.errors?.['required']">Description must have less than 100 characters</mat-error>
                 </mat-form-field>
                 <div *ngIf="edit==false">{{employee.description}}</div>
@@ -62,6 +61,6 @@
 </form>
 <section class="button margin">
     <button mat-raised-button (click)="edit=!edit" *ngIf="edit==false">Edit Profile</button>
-    <button mat-raised-button (click)="UpdateProfile()" *ngIf="edit">Update changes</button>
     <button mat-raised-button (click)="edit=!edit" *ngIf="edit">Cancel changes</button>
+    <button mat-raised-button (click)="UpdateProfile()" *ngIf="edit" [disabled]="!profileForm.valid">Update changes</button>
 </section>
