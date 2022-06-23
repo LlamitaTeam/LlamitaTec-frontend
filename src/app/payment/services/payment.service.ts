@@ -7,7 +7,7 @@ import {catchError, retry, throwError} from "rxjs";
 })
 export class PaymentService {
 
-  basePath = 'http://localhost:3000/request';
+  basePath = 'http://localhost:8080/api/v1/requests';
 
   constructor(private http: HttpClient) { }
 
@@ -37,14 +37,6 @@ export class PaymentService {
       )
   }
 
-  getById(id: any) {
-    return this.http.get(`http://localhost:3000/clients/${id}`, this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-
   getByRequestById(id: any) {
     return this.http.get(this.basePath+"/"+id, this.httpOptions)
       .pipe(
@@ -53,16 +45,8 @@ export class PaymentService {
       )
   }
 
-  getByEmployeeById(id: any) {
-    return this.http.get(`http://localhost:3000/employees/${id}`, this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-
   updateRequest(id: number, item: object){
-    return this.http.patch(`http://localhost:3000/request/${id}`,item,this.httpOptions)
+    return this.http.put(`${this.basePath}/${id}`,item,this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError)

@@ -15,11 +15,11 @@ export class ProfileComponent implements OnInit {
   itemData: Client = new Client();
 
   profileForm :FormGroup= this.builder.group({
-    number: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(9),Validators.minLength(9)], updateOn: 'change'}],
-    altnumber: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(5),Validators.minLength(5)], updateOn: 'change'}],
-    description: ['', {validators: [Validators.required, Validators.maxLength(500)], updateOn: 'change'}],
-    adress: ['', {validators: [Validators.required, Validators.maxLength(50)], updateOn: 'change'}], 
-    urlToImage: ['', {validators: [Validators.required]}]
+    number: ['', {validators: [Validators.pattern('^[0-9]*$'), Validators.maxLength(9),Validators.minLength(9)], updateOn: 'change'}],
+    altnumber: ['', {validators: [Validators.pattern('^[0-9]*$'), Validators.maxLength(5),Validators.minLength(5)], updateOn: 'change'}],
+    description: ['', {validators: [Validators.maxLength(1000)], updateOn: 'change'}],
+    adress: ['', {validators: [Validators.maxLength(500)], updateOn: 'change'}], 
+    urlToImage: ['', {validators: Validators.maxLength(500)}]
   });
 
   constructor(public builder: FormBuilder, private newProfileService: ProfileService, public router: Router) { }
@@ -56,21 +56,21 @@ export class ProfileComponent implements OnInit {
     this.itemData.id = this.client.id;
     this.itemData.name = this.client.name;
     this.itemData.age = this.client.age;
-    this.itemData.email = this.client.email;
+    this.itemData.user=this.client.user;
     if(this.profileForm.value.number==""){
-      this.itemData.number = this.client.number;
+      this.itemData.phone = this.client.phone;
     }else{
-      this.itemData.number = this.profileForm.value.number;
+      this.itemData.phone = this.profileForm.value.number;
     }
     if(this.profileForm.value.altnumber==""){
-      this.itemData.altnumber = this.client.altnumber;
+      this.itemData.altphone = this.client.altphone;
     }else{
-      this.itemData.altnumber = this.profileForm.value.altnumber;
+      this.itemData.altphone = this.profileForm.value.altnumber;
     }
-    if(this.profileForm.value.adress==""){
-      this.itemData.adress = this.client.adress;
+    if(this.profileForm.value.address==""){
+      this.itemData.address = this.client.address;
     }else{
-      this.itemData.adress = this.profileForm.value.adress;
+      this.itemData.address = this.profileForm.value.adress;
     }
     if(this.profileForm.value.description==""){
       this.itemData.description = this.client.description;

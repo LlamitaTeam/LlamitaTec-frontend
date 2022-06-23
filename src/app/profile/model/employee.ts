@@ -1,23 +1,35 @@
+import { Service } from "./service";
+import { User } from "./user";
 export class Employee {
     id: number;
     name: string;
     age: number;
-    serviceId: number;
-    email: string;
-    number: number;
-    altnumber: number;
+    phone: string;
+    altphone: string;
     urlToImage: string;
     description: string;
-  
+    user: User;
+    service: Service;
+
     constructor() {
       this.id = 0;
       this.name = "";
       this.age = 0;
-      this.serviceId=0;
-      this.email = "";
-      this.number = 0;
-      this.altnumber = 0;
+      this.phone = "";
+      this.altphone = "";
       this.urlToImage="";
       this.description = "";
+      this.service={
+        id:0,
+        name:"",
+        urlToImage:"",
+        description:""
+      }
+      this.user={
+        id:0,
+        email:"",
+        password:"",
+        typeuser:""
+      }
     }
   }

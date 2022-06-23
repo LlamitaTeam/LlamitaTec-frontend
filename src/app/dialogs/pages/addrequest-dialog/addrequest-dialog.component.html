@@ -1,14 +1,24 @@
 <div *ngIf="created===false">
 <h2 mat-dialog-title>Are you sure you want to create the request selected?</h2>
 <mat-dialog-actions>
-    <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
-    <button mat-button (click)="createData()">Yes</button>
+    <form [formGroup]="descriptionForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Descripcion del problema a revisar</mat-label>
+            <input autocomplete="off" type="text" matInput formControlName="description" required>
+            <mat-error *ngIf="description?.errors?.['required']">Description is required</mat-error>
+            <mat-error *ngIf="description?.errors?.['maxLength'] && !description?.errors?.['required']">Description is too long!</mat-error>
+        </mat-form-field>
+    </form>
+    <div>
+        <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+        <button mat-button (click)="createData()" [disabled]="!descriptionForm.valid">Yes</button>
+    </div>
 </mat-dialog-actions>
 </div>
 <div *ngIf="created===true">
     <h2 mat-dialog-title>Request created succesfully</h2>
     <mat-dialog-actions>
-        <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+        <button mat-button mat-dialog-close cdkFocusInitial (click)="reload()">Close</button>
     </mat-dialog-actions>
 </div>
 

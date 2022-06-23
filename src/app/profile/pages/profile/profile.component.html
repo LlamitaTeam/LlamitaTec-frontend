@@ -10,8 +10,8 @@
             <img class="Ccard-image" mat-card-image [src]="client.urlToImage" alt="Photo of a client" *ngIf="edit==false">
             <mat-form-field appearance="fill" *ngIf="edit">
                 <mat-label>New img</mat-label>
-                <input autocomplete="off" matInput formControlName="urlToImage" required>
-                <mat-error *ngIf="urlToImage?.errors?.['required']">URL is required</mat-error>
+                <input autocomplete="off" matInput formControlName="urlToImage">
+                <mat-error *ngIf="urlToImage?.errors?.['pattern'] && !urlToImage?.errors?.['required']">The given url is not valid</mat-error>
             </mat-form-field>
         </div>
         <mat-card-content>
@@ -19,23 +19,21 @@
             <div> {{client.name}} </div>   
             <h3>Contact</h3>
             <ul>
-                <li>{{client.email}}</li>
-                <li *ngIf="edit==false">{{client.number}}</li>
+                <li>{{client.user.email}}</li>
+                <li *ngIf="edit==false">{{client.phone}}</li>
                 <li  *ngIf="edit">
                     <mat-form-field appearance="fill" *ngIf="edit">
                         <mat-label>New number</mat-label>
-                        <input autocomplete="off" matInput formControlName="number" required>
-                        <mat-error *ngIf="number?.errors?.['required']">Number is required</mat-error>
+                        <input autocomplete="off" matInput formControlName="number">
                         <mat-error *ngIf="number?.errors?.['pattern'] && !number?.errors?.['required']">Only numbers allowed</mat-error>
                         <mat-error *ngIf="!number?.errors?.['required']">Number must be valid</mat-error>
                     </mat-form-field>
                 </li>
-                <li *ngIf="edit==false">{{client.altnumber}}</li>
+                <li *ngIf="edit==false">{{client.altphone}}</li>
                 <li *ngIf="edit">
                     <mat-form-field appearance="fill">
                         <mat-label>New alternative number</mat-label>
-                        <input autocomplete="off" matInput formControlName="altnumber" required>
-                        <mat-error *ngIf="altnumber?.errors?.['required']">Alt-Number is required</mat-error>
+                        <input autocomplete="off" matInput formControlName="altnumber">
                         <mat-error *ngIf="altnumber?.errors?.['pattern'] && !altnumber?.errors?.['required']">Only numbers allowed</mat-error>
                         <mat-error *ngIf="!altnumber?.errors?.['required']">Alt-Number must be valid</mat-error>
                     </mat-form-field>
@@ -46,11 +44,10 @@
             <h3>Your adress</h3>
             <mat-form-field appearance="fill" *ngIf="edit">
                 <mat-label>New adress</mat-label>
-                <input autocomplete="off" matInput formControlName="adress" required>
-                <mat-error *ngIf="adress?.errors?.['required']">Adress is required</mat-error>
+                <input autocomplete="off" matInput formControlName="adress">
                 <mat-error *ngIf="adress?.errors?.['maxLength'] && !adress?.errors?.['required']">Adress must have less than 60 characters</mat-error>
             </mat-form-field>
-            <div *ngIf="edit==false">{{client.adress}}</div>
+            <div *ngIf="edit==false">{{client.address}}</div>
         </mat-card-content>
         </mat-card>
     </div>
@@ -60,8 +57,7 @@
                 <h3>Details</h3>
                 <mat-form-field appearance="fill" *ngIf="edit" class="ancho">
                     <mat-label>New description</mat-label>
-                    <input autocomplete="off" matInput formControlName="description" required>
-                    <mat-error *ngIf="description?.errors?.['required']">Description is required</mat-error>
+                    <input autocomplete="off" matInput formControlName="description">
                     <mat-error *ngIf="description?.errors?.['maxLength'] && !description?.errors?.['required']">Description must have less than 100 characters</mat-error>
                 </mat-form-field>
                 <div *ngIf="edit==false">{{client.description}}</div>
@@ -71,6 +67,6 @@
 </form>
 <section class="button margin">
     <button mat-raised-button (click)="edit=!edit" *ngIf="edit==false">Edit Profile</button>
-    <button mat-raised-button (click)="UpdateProfile()" *ngIf="edit">Update changes</button>
     <button mat-raised-button (click)="edit=!edit" *ngIf="edit">Cancel changes</button>
+    <button mat-raised-button (click)="UpdateProfile()" *ngIf="edit" [disabled]="!profileForm.valid">Update changes</button>
 </section>

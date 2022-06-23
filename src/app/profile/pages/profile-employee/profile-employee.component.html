@@ -11,9 +11,9 @@
             {{employee.name}}
         <h3>Contact</h3>
         <ul>
-            <li>{{employee.email}}</li>
-            <li>{{employee.number}}</li>
-            <li>{{employee.altnumber}}</li>
+            <li>{{employee.user.email}}</li>
+            <li>{{employee.phone}}</li>
+            <li>{{employee.altphone}}</li>
         </ul>
     </mat-card-content>
     </mat-card>
@@ -23,9 +23,10 @@
         <mat-card-content>
             <h3>Details</h3>
             {{employee.description}}
+            {{employee.service.id}}
         </mat-card-content>
         </mat-card>
 </div>
 <section class="button margin">
-    <button mat-raised-button (click)="addNewRequest(employee.id,employee.serviceId,employee.name,employee.urlToImage)">REQUEST</button>
+    <button mat-raised-button (click)="addNewRequest()">REQUEST</button>
 </section>

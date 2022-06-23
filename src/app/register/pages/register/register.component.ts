@@ -56,12 +56,11 @@ export class RegisterComponent implements OnInit {
     if(this.registerForm.value.typeUser=="employee"){
       this.employee.id=userid+1;
       this.employee.name=this.registerForm.value.name;
-      this.employee.email=this.registerForm.value.email;
       this.employee.age=this.registerForm.value.age;
-      this.employee.serviceId=this.registerForm.value.serviceId;
-      this.employee.number=this.registerForm.value.number;
+      this.employee.service.id=this.registerForm.value.serviceId;
+      this.employee.phone=this.registerForm.value.number;
       this.employee.urlToImage="https://i.ibb.co/XkhCy5M/noFoto.jpg";
-      this.employee.altnumber="";
+      this.employee.altphone="";
       this.employee.description="";
       this.authService.createEmployee(this.employee).subscribe( (response: any) => {
         console.log('item added');
@@ -69,13 +68,16 @@ export class RegisterComponent implements OnInit {
     } else if(this.registerForm.value.typeUser=="client"){
       this.client.id=userid+1;
       this.client.name=this.registerForm.value.name;
-      this.client.email=this.registerForm.value.email;
       this.client.age=this.registerForm.value.age;
-      this.client.number=this.registerForm.value.number;
+      this.client.phone=this.registerForm.value.number;
       this.client.urlToImage="https://i.ibb.co/XkhCy5M/noFoto.jpg";
-      this.client.altnumber="";
+      this.client.altphone="";
       this.client.description="";
-      this.client.adress="";
+      this.client.address="";
+      this.client.user.id=userid+1;
+      this.client.user.email=this.registerForm.value.email;
+      this.client.user.password=this.registerForm.value.password;
+      this.client.user.typeuser=this.registerForm.value.typeuser;
       this.authService.createClient(this.client).subscribe( (response: any) => {
         console.log('item added');
       })
