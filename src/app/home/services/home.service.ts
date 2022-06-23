@@ -7,7 +7,7 @@ import {catchError, Observable, retry, throwError} from "rxjs";
 })
 export class HomeService {
 
-  basePath = 'http://localhost:3000/request';
+  basePath = 'http://localhost:8080/api/v1/requests';
 
   constructor(private http: HttpClient) { }
 
@@ -48,14 +48,14 @@ export class HomeService {
 
   getById(id: any) {
     if(this.getCurrentUserType()=='employee'){
-      return this.http.get(`http://localhost:3000/employees/${id}/request`, this.httpOptions)
+      return this.http.get(`${this.basePath}/employees/1`, this.httpOptions)
         .pipe(
           retry(2),
           catchError(this.handleError)
         )
     }
     else{
-      return this.http.get(`http://localhost:3000/clients/${id}/request`, this.httpOptions)
+      return this.http.get(`${this.basePath}/clients/${id}`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -63,12 +63,13 @@ export class HomeService {
     }
   }
   deleteById(id: any) {
-    return this.http.delete(`http://localhost:3000/request/${id}`, this.httpOptions)
+    return this.http.delete(`${this.basePath}/${id}`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
+  
   getClientById(id: any) {
     return this.http.get(`http://localhost:3000/clients/${id}`, this.httpOptions)
     .pipe(

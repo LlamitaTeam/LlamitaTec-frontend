@@ -19,13 +19,13 @@
       {{item.description}}
     </mat-card-content>
 
-    <div *ngIf="item.payed==false">
+    <div *ngIf="item.paid==false">
       <mat-card-actions>
         <button class="button" mat-raised-button [routerLink]="['/payment', item.id]">Pay</button>
         <button class="button" mat-raised-button (click)="openDialog(item.id)">Cancel</button>
       </mat-card-actions>
     </div>
 
-    <h2 *ngIf="item.payed">Gracias por usar nuestros servicios!</h2>
+    <h2 *ngIf="item.paid">Gracias por usar nuestros servicios!</h2>
   </mat-card>
 </div>
