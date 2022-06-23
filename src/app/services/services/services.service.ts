@@ -7,7 +7,7 @@ import {catchError, Observable, retry, throwError} from "rxjs";
 })
 export class ServicesService {
 
-  basePath = 'https://my-json-server.typicode.com/Williamz21/llamita/services';
+  basePath = 'http://localhost:8080/api/v1/services';
 
   constructor(private http: HttpClient) { }
   

@@ -16,11 +16,11 @@ export class ProfileEmployeeUserComponent implements OnInit {
   itemData: Employee = new Employee();
 
   profileForm :FormGroup= this.builder.group({
-    number: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(9),Validators.minLength(9)], updateOn: 'change'}],
-    altnumber: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(5),Validators.minLength(5)], updateOn: 'change'}],
-    description: ['', {validators: [Validators.required, Validators.maxLength(500)], updateOn: 'change'}],
-    adress: ['', {validators: [Validators.required, Validators.maxLength(50)], updateOn: 'change'}], 
-    urlToImage: ['', {validators: [Validators.required]}]
+    number: ['', {validators: [Validators.pattern('^[0-9]*$'), Validators.maxLength(9),Validators.minLength(9)], updateOn: 'change'}],
+    altnumber: ['', {validators: [Validators.pattern('^[0-9]*$'), Validators.maxLength(5),Validators.minLength(5)], updateOn: 'change'}],
+    description: ['', {validators: [Validators.maxLength(500)], updateOn: 'change'}],
+    adress: ['', {validators: [Validators.maxLength(50)], updateOn: 'change'}], 
+    urlToImage: ['', {validators: [Validators.maxLength(500)]}]
   });
 
   constructor(public builder: FormBuilder, private newProfileService: ProfileService, public router: Router) { }
@@ -48,7 +48,7 @@ export class ProfileEmployeeUserComponent implements OnInit {
   }
 
   getProfiles() {
-    this.newProfileService.getById(this.getCurrentUserId()).subscribe( (response: any) => {
+    this.newProfileService.getById(this.getCurrentUserId().id).subscribe( (response: any) => {
       this.employee = response;
     })
   }
@@ -57,17 +57,17 @@ export class ProfileEmployeeUserComponent implements OnInit {
     this.itemData.id = this.employee.id;
     this.itemData.name = this.employee.name;
     this.itemData.age = this.employee.age;
-    this.itemData.email = this.employee.email;
-    this.itemData.serviceId = this.employee.serviceId;
+    this.itemData.service=this.itemData.service;
+    this.itemData.user = this.itemData.user;
     if(this.profileForm.value.number==""){
-      this.itemData.number = this.employee.number;
+      this.itemData.phone = this.employee.phone;
     }else{
-      this.itemData.number = this.profileForm.value.number;
+      this.itemData.phone = this.profileForm.value.number;
     }
     if(this.profileForm.value.altnumber==""){
-      this.itemData.altnumber = this.employee.altnumber;
+      this.itemData.altphone = this.employee.altphone;
     }else{
-      this.itemData.altnumber = this.profileForm.value.altnumber;
+      this.itemData.altphone = this.profileForm.value.altnumber;
     }
     if(this.profileForm.value.description==""){
       this.itemData.description = this.employee.description;
