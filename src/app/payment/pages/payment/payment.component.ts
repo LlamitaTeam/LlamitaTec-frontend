@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentService } from '../../services/payment.service';
-import { Request } from '../../model/request';
-import { Client } from '../../../profile/model/client';
-import { Employee } from '../../../profile/model/employee';
+import { Request } from 'src/app/profile/model/request';
 
 interface Card {
   value: string;
@@ -18,8 +16,6 @@ interface Card {
 })
 export class PaymentComponent implements OnInit {
   itemData : Request= new Request();
-  client : Client= new Client();
-  employee : Employee= new Employee();
   floatLabelControl = new FormControl('visa')
   selected = new FormControl(1)
   cards: Card[] = [
@@ -32,7 +28,7 @@ export class PaymentComponent implements OnInit {
   paymentForm :FormGroup= this.builder.group({
     name: ['', [Validators.required, Validators.minLength(6)]],
     lastname: ['', [Validators.required, Validators.minLength(6)]],
-    dni: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(9),Validators.minLength(9)], updateOn: 'change'}],
+    dni: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(8),Validators.minLength(8)], updateOn: 'change'}],
     numberCard: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$')], updateOn: 'change'}],
     csv: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(3),Validators.minLength(3)], updateOn: 'change'}],
     date: ['', [Validators.required]],
@@ -57,28 +53,11 @@ export class PaymentComponent implements OnInit {
   getRequest() {
     this.newPaymentService.getByRequestById(this.route.snapshot.paramMap.get('id')).subscribe( (response: any) => {
       this.itemData = response;
-      console.log(this.itemData)
-      this.getClientId()
-      this.getEmployeeId()
-    })
-  }
-
-  getClientId(){
-    this.newPaymentService.getById(this.itemData.clientId).subscribe( (response: any) => {
-      this.client = response;
-      console.log(this.client)
-    })
-  }
-
-  getEmployeeId(){
-    this.newPaymentService.getByEmployeeById(this.itemData.employeeId).subscribe( (response: any) => {
-      this.employee = response;
-      console.log(this.employee)
     })
   }
 
   updateRequest(){
-    this.itemData.payed=true;
+    this.itemData.paid=true;
     this.newPaymentService.updateRequest(this.itemData.id,this.itemData).subscribe( (response: any) => {
       console.log('item updated');
       console.log(response);
