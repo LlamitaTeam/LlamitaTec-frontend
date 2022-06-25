@@ -7,13 +7,13 @@
     <mat-card class="Ccard" >
     <img class="Ccard-image" mat-card-image [src]="employee.urlToImage" alt="Photo of a employee">
     <mat-card-content>
-        <h3>Your information</h3>
-            {{employee.name}}
-        <h3>Contact</h3>
+        <h2>Your information</h2>
+            <h3>{{employee.name}}</h3>
+        <h2>Contact</h2>
         <ul>
-            <li>{{employee.user.email}}</li>
-            <li>{{employee.phone}}</li>
-            <li>{{employee.altphone}}</li>
+            <li><h3>{{employee.user.email}}</h3></li>
+            <li><h3>{{employee.phone}}</h3></li>
+            <li><h3>{{employee.altphone}}</h3></li>
         </ul>
     </mat-card-content>
     </mat-card>
@@ -21,9 +21,8 @@
 <div class="content">
     <mat-card class="Ccard2">
         <mat-card-content>
-            <h3>Details</h3>
-            {{employee.description}}
-            {{employee.service.id}}
+            <h2>Details</h2>
+            <h3>{{employee.description}}</h3>
         </mat-card-content>
         </mat-card>
 </div>

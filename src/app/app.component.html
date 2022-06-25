@@ -4,61 +4,23 @@
 
 <div *ngIf="getCurrentUserEmail() === 'client'" class="all">
 <mat-toolbar class="nav-bar" *ngIf="router.url !== '/login'">
-    <button mat-icon-button class="bar-icon" aria-label="Nav-bar icon" (click)="opened=!opened">
-      <mat-icon>menu</mat-icon>
-    </button>
-  
-    <span>LlamitaTEC - {{getCurrentUserEmail()}}</span>
+    <span class="spaces">LlamitaTEC</span>
     <span class="spacer"></span>
+    <a class="text" [routerLink]="'/home'" href="#">Home</a>
+    <a class="text" [routerLink]="'/profile'" href="#">Profile</a>
+    <a class="text" [routerLink]="'/services'" href="#">Services</a>
+    <a class="text" (click)="signOut()" href="#">Log-out</a>
   </mat-toolbar>
-  
-  <mat-sidenav-container>
-    <mat-sidenav [(opened)]="opened">
-        <section class="button">
-        <button [routerLink]="'/home'" (click)="opened=!opened" class="button" mat-raised-button>Home</button>
-        </section>
-        <section class="button">
-        <button [routerLink]="'/profile'" (click)="opened=!opened" mat-raised-button>Profile</button>
-        </section>
-        <section class="button">
-          <button [routerLink]="'/services'" (click)="opened=!opened" mat-raised-button>Services</button>
-        </section>
-        <section class="button">
-        <button mat-raised-button (click)="signOut()">Log-out</button>
-        </section>
-    </mat-sidenav>
-    
-    <mat-sidenav-content>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <router-outlet></router-outlet>
 </div>
 
 <div *ngIf="getCurrentUserEmail() === 'employee'" class="all">
   <mat-toolbar class="nav-bar" *ngIf="router.url !== '/login'">
-      <button mat-icon-button class="bar-icon" aria-label="Nav-bar icon" (click)="opened=!opened">
-        <mat-icon>menu</mat-icon>
-      </button>
-    
-      <span>LlamitaTEC - {{getCurrentUserEmail()}}</span>
+      <span class="spaces">LlamitaTEC</span>
       <span class="spacer"></span>
+      <a class="text" [routerLink]="'/homeemployee'" href="#">Home</a>
+      <a class="text" [routerLink]="'/profileemployee'" href="#">Profile</a>
+      <a class="text" (click)="signOut()" href="#">Log-out</a>
     </mat-toolbar>
-    
-    <mat-sidenav-container>
-      <mat-sidenav [(opened)]="opened">
-          <section class="button">
-          <button [routerLink]="'/homeemployee'" (click)="opened=!opened" class="button" mat-raised-button>Home</button>
-          </section>
-          <section class="button">
-          <button [routerLink]="'/profileemployee'" (click)="opened=!opened" mat-raised-button>Profile</button>
-          </section>
-          <section class="button">
-          <button mat-raised-button (click)="signOut()">Log-out</button>
-          </section>
-      </mat-sidenav>
-      
-      <mat-sidenav-content>
-          <router-outlet></router-outlet>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
+    <router-outlet></router-outlet>
   </div>

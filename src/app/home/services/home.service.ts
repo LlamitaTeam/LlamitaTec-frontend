@@ -8,7 +8,8 @@ import {catchError, Observable, retry, throwError} from "rxjs";
 export class HomeService {
 
   basePath = 'http://localhost:8080/api/v1/requests';
-
+  basePath2 = 'http://localhost:8080/api/v1/clients';
+  basePath3= 'http://localhost:8080/api/v1/employees';
   constructor(private http: HttpClient) { }
 
   httpOptions = {
@@ -48,7 +49,7 @@ export class HomeService {
 
   getById(id: any) {
     if(this.getCurrentUserType()=='employee'){
-      return this.http.get(`${this.basePath}/employees/1`, this.httpOptions)
+      return this.http.get(`${this.basePath}/employees/${id}`, this.httpOptions)
         .pipe(
           retry(2),
           catchError(this.handleError)
@@ -62,6 +63,23 @@ export class HomeService {
       )
     }
   }
+
+  getByEmployeeId(id: any) {
+    return this.http.get(`${this.basePath3}/users/${id}`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  getByClientId(id: any) {
+    return this.http.get(`${this.basePath2}/${id}`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
   deleteById(id: any) {
     return this.http.delete(`${this.basePath}/${id}`, this.httpOptions)
       .pipe(
@@ -69,13 +87,4 @@ export class HomeService {
         catchError(this.handleError)
       )
   }
-  
-  getClientById(id: any) {
-    return this.http.get(`http://localhost:3000/clients/${id}`, this.httpOptions)
-    .pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
-  }
-
 }

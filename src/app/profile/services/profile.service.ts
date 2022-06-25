@@ -50,14 +50,14 @@ export class ProfileService {
 
   getById(id: any) {
     if(this.getCurrentUserType()=='employee'){
-      return this.http.get(`${this.basePath3}/users/2`, this.httpOptions)
+      return this.http.get(`${this.basePath3}/users/${id}`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
     }
     else{
-      return this.http.get(`${this.basePath}/1`, this.httpOptions)
+      return this.http.get(`${this.basePath}/${id}`, this.httpOptions)
         .pipe(
           retry(2),
           catchError(this.handleError)
@@ -99,14 +99,14 @@ export class ProfileService {
 
   updateProfile(id: number, item: object){
     if(this.getCurrentUserType()=='employee'){
-      return this.http.put(`${this.basePath3}/1`,item,this.httpOptions)
+      return this.http.put(`${this.basePath3}/${id}`,item,this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
     }
     else{
-      return this.http.put(`${this.basePath}/1`,item,this.httpOptions)
+      return this.http.put(`${this.basePath}/${id}`,item,this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

@@ -1,21 +1,15 @@
 /*content*/
 
 .content{
-    display: block;
-    margin-top: 20px;
-    width: 60%;
-    margin: 0 auto;
-}
-  
-@media (min-width: 768px) {
-    .content{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      justify-content: center;
-      justify-items: center;
-      grid-template-rows: auto auto auto;
-      column-gap: 20px;
-    }
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    margin-bottom: 70px;
+    padding-bottom: 4rem;
 }
 
 .Ccard{

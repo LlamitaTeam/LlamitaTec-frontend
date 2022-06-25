@@ -3,6 +3,7 @@
 .button{
     display: flex;
     margin-top: 10px;
+    margin-bottom: 20px;
     justify-content: center;
     gap: 20px;
 }
@@ -31,18 +32,19 @@
     /*box-shadow: 0px 5px 32px -2px rgba(0,0,0,0.27);*/
     padding: 2rem;
     border-radius: 1rem;  
-    width: 90%;
+    width: 80%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) { 
     .Ccard{
         display: grid;
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(2,1fr);
         grid-row: 1;
         column-gap: 30px;
         max-width: 1000px;
         margin: 0;
         margin-top: 20px;
+        padding-bottom: 5px;
     }
 }
 
@@ -51,7 +53,9 @@
 }
 
 .Ccard2{
-    max-width: 1000px;
+    margin: 20px auto;
+    border-radius: 1rem;  
+    width: 70%;
 }
 
 .content-text{
@@ -65,12 +69,24 @@
 
 .margin{
     margin: 30px auto;
+    padding: 2rem;
 }
 
-mat-card-content h3{
+@media (min-width: 768px) {
+    .margin{
+        padding: 0;
+    }
+}
+
+mat-card-content h2{
     font-weight: bold;
 }
-
-.ancho {
+mat-form-field{
     width: 100%;
+}
+
+/*form*/
+
+form{
+    padding-bottom: 2rem;
 }

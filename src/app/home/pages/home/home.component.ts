@@ -12,11 +12,10 @@ import { CancelDialogComponent } from 'src/app/dialogs/pages/cancel-dialog/cance
 export class HomeComponent implements OnInit {
   show:boolean=false;
   request:Array<any> = [];
-
   constructor(private newHomeService: HomeService, public router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getAllRequests();
+    this.getByClientId();
   }
 
   getCurrentUserId(){
@@ -27,9 +26,16 @@ export class HomeComponent implements OnInit {
     }else return null
   }
 
-  getAllRequests() {
-    this.newHomeService.getById(this.getCurrentUserId()).subscribe( (response: any) => {
+  getAllRequests(id:any) {
+    this.newHomeService.getById(id).subscribe( (response: any) => {
       this.request = response;
+      console.log(response)
+    })
+  }
+
+  getByClientId(){
+    this.newHomeService.getByClientId(this.getCurrentUserId()).subscribe( (response: any) => {
+      this.getAllRequests(response.id)
     })
   }
 

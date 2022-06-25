@@ -1,20 +1,19 @@
-mat-sidenav-container{
-    position: absolute;
-    top: 60px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-mat-sidenav{
-    width: 200px;
-    background-color: #447ED2  ;
-}
-
 /*navegation bar*/
 
 .nav-bar{
+    display: flex;
+    flex-direction: column;
     background-color: #1c58AE;
-    padding: 10px;
+    padding-top: 2rem;
+    padding-bottom: 190px;
+}
+
+@media (min-width: 768px) {
+    .nav-bar{
+        flex-direction: row;
+        background-color: #1c58AE;
+        padding: 10px;
+    }
 }
 
 .nav-bar span{
@@ -39,4 +38,20 @@ mat-sidenav{
 
 .all{
     height: 100%;
+}
+
+.text{
+    color: #Ffffffff;
+    text-decoration: none;
+    margin: 0 1rem;
+}
+
+.spaces{
+    margin: 0 2rem;
+}
+
+/*links*/
+
+a:hover{
+    color: yellow;
 }

@@ -4,6 +4,7 @@ import { HomeService } from '../../services/home.service';
 import { Client } from '../../model/client';
 import {MatDialog} from '@angular/material/dialog';
 import { CancelDialogComponent } from 'src/app/dialogs/pages/cancel-dialog/cancel-dialog.component';
+import { Employee } from 'src/app/profile/model/employee';
 
 @Component({
   selector: 'app-home-employee',
@@ -13,11 +14,11 @@ import { CancelDialogComponent } from 'src/app/dialogs/pages/cancel-dialog/cance
 export class HomeEmployeeComponent implements OnInit {
   displayedColumns: string[] = ['title','description', 'clientId', 'serviceId', 'payed', 'buttons'];
   request:Array<any> = [];
-  client:Client=new Client();
+  employee: Employee=new Employee();
   constructor(private newHomeService: HomeService, public router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getAllRequests();
+    this.getByEmployeeId()
   }
   
   getCurrentUserId(){
@@ -28,16 +29,16 @@ export class HomeEmployeeComponent implements OnInit {
     }else return null
   }
 
-  getAllRequests() {
-    this.newHomeService.getById(this.getCurrentUserId()).subscribe( (response: any) => {
+  getAllRequests(id:any) {
+    this.newHomeService.getById(id).subscribe( (response: any) => {
       this.request = response;
       console.log(response)
     })
   }
-  getClient(id:number){
-    this.newHomeService.getById(id).subscribe( (response: any) => {
-      this.client = response;
-      return response.name
+  getByEmployeeId(){
+    this.newHomeService.getByEmployeeId(this.getCurrentUserId()).subscribe( (response: any) => {
+      console.log(response.id)
+      this.getAllRequests(response.id)
     })
   }
   
