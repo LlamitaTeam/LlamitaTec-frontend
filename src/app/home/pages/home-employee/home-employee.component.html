@@ -18,19 +18,19 @@
         </ng-container>
         <ng-container matColumnDef="clientId">
             <th mat-header-cell *matHeaderCellDef> Client </th>
-            <td mat-cell *matCellDef="let element"> {{element.clientId}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.client.id}} </td>
         </ng-container>
         <ng-container matColumnDef="serviceId">
             <th mat-header-cell *matHeaderCellDef> Service</th>
-            <td mat-cell *matCellDef="let element"> {{element.serviceId}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.service.id}} </td>
         </ng-container>
         <ng-container matColumnDef="payed">
-            <th mat-header-cell *matHeaderCellDef> Payed</th>
+            <th mat-header-cell *matHeaderCellDef> Status</th>
             <td mat-cell *matCellDef="let element">
-                <div *ngIf="element.payed===false">
+                <div *ngIf="element.paid===false">
                     El servicio aún no ha sido pagado
                 </div>
-                <div *ngIf="element.payed===true">
+                <div *ngIf="element.paid===true">
                     El servicio ha sido pagado
                 </div>
             </td>
@@ -38,7 +38,7 @@
         <ng-container matColumnDef="buttons">
             <th mat-header-cell *matHeaderCellDef> Action</th>
             <td mat-cell *matCellDef="let element">
-                <div *ngIf="element.payed===false">
+                <div *ngIf="element.paid===false">
                     <button class="button" (click)="openDialog(element.id)" mat-raised-button>Cancel request</button>
                 </div>
             </td>

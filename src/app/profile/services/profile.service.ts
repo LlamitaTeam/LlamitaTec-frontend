@@ -7,10 +7,10 @@ import {catchError, Observable, retry, throwError} from "rxjs";
 })
 export class ProfileService {
 
-  basePath = 'http://localhost:3000/clients';
-  basePath3= 'http://localhost:3000/employees';
-  basePath2 = 'http://localhost:3000/request';
-
+  basePath = 'http://localhost:8080/api/v1/clients';
+  basePath3= 'http://localhost:8080/api/v1/employees';
+  basePath2 = 'http://localhost:8080/api/v1/requests'; 
+  basePath4 = 'http://localhost:8080/api/v1/services'; 
   constructor(private http: HttpClient) { }
 
   httpOptions = {
@@ -50,14 +50,14 @@ export class ProfileService {
 
   getById(id: any) {
     if(this.getCurrentUserType()=='employee'){
-      return this.http.get(`http://localhost:3000/employees/${id}`, this.httpOptions)
+      return this.http.get(`${this.basePath3}/users/2`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
     }
     else{
-      return this.http.get(`http://localhost:3000/clients/${id}`, this.httpOptions)
+      return this.http.get(`${this.basePath}/1`, this.httpOptions)
         .pipe(
           retry(2),
           catchError(this.handleError)
@@ -66,22 +66,23 @@ export class ProfileService {
   }
 
   getClient(id: any){
-    return this.http.get(`http://localhost:3000/clients/${id}`, this.httpOptions)
+    return this.http.get(`${this.basePath}/${id}`, this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError)
     )
   }
+
   getByEmployeeId(id: any) {
-    return this.http.get(`http://localhost:3000/employees/${id}`, this.httpOptions)
+    return this.http.get(`${this.basePath3}/users/${id}`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  createRequest(item: object):Observable<object> {
-    return this.http.post(this.basePath2, item, this.httpOptions)
+  createRequest(clientId:any,employeeId:any,serviceId:any,item: object):Observable<object> {
+    return this.http.post(`${this.basePath2}/${clientId}/${employeeId}/${serviceId}`,item,this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -98,14 +99,14 @@ export class ProfileService {
 
   updateProfile(id: number, item: object){
     if(this.getCurrentUserType()=='employee'){
-      return this.http.patch(`http://localhost:3000/employees/${id}`,item,this.httpOptions)
+      return this.http.put(`${this.basePath3}/1`,item,this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
     }
     else{
-      return this.http.patch(`http://localhost:3000/clients/${id}`,item,this.httpOptions)
+      return this.http.put(`${this.basePath}/1`,item,this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

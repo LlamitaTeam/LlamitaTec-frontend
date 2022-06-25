@@ -11,6 +11,7 @@ export class CancelDialogComponent implements OnInit {
   constructor(private newHomeService: HomeService) { }
 
   ngOnInit(): void {
+    console.log(this.getCurrentRequestId())
   }
 
   getCurrentRequestId(){

@@ -1,20 +1,64 @@
+import { Client } from "./client";
+import { Employee } from "./employee";
+import { Service } from "./service";
+
 export class Request {
     id: number;
     title: string;
     description: string;
-    serviceId: number;
-    employeeId: number;
-    clientId: number;
     urlToImage: string;
-    payed: boolean;
+    paid: boolean;
+    client: Client;
+    employee: Employee;
+    service: Service;
     constructor() {
       this.id = 0;
       this.title = "";
       this.description = "";
-      this.serviceId = 0;
-      this.employeeId = 0;
-      this.clientId = 0;
       this.urlToImage= "";
-      this.payed=false;
+      this.paid=false;
+      this.service={
+        id:0,
+        name:"",
+        urlToImage:"",
+        description:""
+      }
+      this.client={
+        id:0,
+        name:"",
+        age: 0,
+        phone: "",
+        altphone: "",
+        urlToImage: "",
+        address: "",
+        description: "",
+        user: {
+          id:0,
+          email:"",
+          typeuser:"",
+          password:""
+        }
+      }
+      this.employee={
+        id:0,
+        name:"",
+        age: 0,
+        phone: "",
+        altphone: "",
+        urlToImage: "",
+        description: "",
+        service: {
+          id:0,
+          name:"",
+          urlToImage:"",
+          description:""
+        },
+        user: {
+          id:0,
+          email:"",
+          typeuser:"",
+          password:""
+        }
+      }
     }
   }
