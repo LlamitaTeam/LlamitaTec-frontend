@@ -1,12 +1,11 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {catchError, Observable, retry, throwError} from "rxjs";
+import { throwError, retry, catchError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService {
-
+export class ConfigureregisterService {
   basePath = 'http://localhost:8080/api/v1/users/auth';
   basePath2 = 'http://localhost:8080/api/v1/clients';
   basePath3 = 'http://localhost:8080/api/v1/employees';
@@ -15,7 +14,7 @@ export class RegisterService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Authorization': 'Bearer ' + this.getCurrentToken()
     })
   }
 
