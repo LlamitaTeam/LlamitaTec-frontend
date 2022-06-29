@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Client } from '../../model/client';
 import { Employee } from '../../model/employee';
+import { ConfigureregisterService } from '../../services/configureregister.service';
 import { RegisterService } from '../../services/register.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class ConfigureregisterComponent implements OnInit {
     serviceId: this.selected
   });
 
-  constructor(public builder: FormBuilder, public authService: RegisterService, public router: Router, private _snackBar: MatSnackBar) {
+  constructor(public builder: FormBuilder, public authService: ConfigureregisterService, public router: Router, private _snackBar: MatSnackBar) {
 
   }
   ngOnInit(): void {
