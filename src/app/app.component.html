@@ -2,7 +2,7 @@
   <router-outlet></router-outlet>
 </div>
 
-<div *ngIf="getCurrentUserEmail() === 'client'" class="all">
+<div *ngIf="getCurrentUserEmail() === 'ROLE_CLIENT'" class="all">
 <mat-toolbar class="nav-bar" *ngIf="router.url !== '/login'">
     <span class="spaces">LlamitaTEC</span>
     <span class="spacer"></span>
@@ -14,7 +14,7 @@
   <router-outlet></router-outlet>
 </div>
 
-<div *ngIf="getCurrentUserEmail() === 'employee'" class="all">
+<div *ngIf="getCurrentUserEmail() === 'ROLE_EMPLOYEE'" class="all">
   <mat-toolbar class="nav-bar" *ngIf="router.url !== '/login'">
       <span class="spaces">LlamitaTEC</span>
       <span class="spacer"></span>

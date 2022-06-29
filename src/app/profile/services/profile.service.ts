@@ -15,7 +15,7 @@ export class ProfileService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Authorization': 'Bearer ' + this.getCurrentUser().token
     })
   }
 
@@ -38,18 +38,18 @@ export class ProfileService {
       )
   }
 
-  getCurrentUserType(){
+  getCurrentUser(){
     let currentUserString= localStorage.getItem('currentUser')
     if(currentUserString){
       //console.log(`current user:' ${currentUserString}`)
       let currentUser = (JSON.parse(currentUserString));
       //console.log(currentUser)
-      return currentUser.typeuser;
+      return currentUser;
     }else return null
   }
 
   getById(id: any) {
-    if(this.getCurrentUserType()=='employee'){
+    if(this.getCurrentUser().roles[0]=='ROLE_EMPLOYEE'){
       return this.http.get(`${this.basePath3}/users/${id}`, this.httpOptions)
       .pipe(
         retry(2),
@@ -98,7 +98,7 @@ export class ProfileService {
   }
 
   updateProfile(id: number, item: object){
-    if(this.getCurrentUserType()=='employee'){
+    if(this.getCurrentUser().roles[0]=='ROLE_EMPLOYEE'){
       return this.http.put(`${this.basePath3}/${id}`,item,this.httpOptions)
       .pipe(
         retry(2),

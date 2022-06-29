@@ -13,7 +13,7 @@ export class EmployeesService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Authorization': 'Bearer ' + this.getCurrentUser().token
     })
   }
 
@@ -26,6 +26,15 @@ export class EmployeesService {
       );
     }
     return throwError('Something happened with request, please try again later');
+  }
+
+  
+  getCurrentUser(){
+    let currentUserString= localStorage.getItem('currentUser')
+    if(currentUserString){
+      let currentUser = (JSON.parse(currentUserString));
+      return currentUser;
+    }else return null
   }
 
   getAll() {

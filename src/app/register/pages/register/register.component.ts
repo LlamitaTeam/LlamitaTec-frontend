@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import { Employee } from '../../model/employee';
 import {Client} from "../../model/client";
 import { Usser } from '../../model/usser';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnInit {
   selected = new FormControl(1)
   client:Client= new Client();
   employee:Employee= new Employee();
+  id: number=0
 
   registerForm :FormGroup= this.builder.group({
     name: ['', [Validators.required, Validators.minLength(6)]],
@@ -29,7 +31,7 @@ export class RegisterComponent implements OnInit {
     serviceId: this.selected
   });
 
-  constructor(public builder: FormBuilder, public authService: RegisterService, public router: Router) {
+  constructor(public builder: FormBuilder, public authService: RegisterService, public router: Router, private _snackBar: MatSnackBar) {
 
   }
   ngOnInit(): void {
@@ -49,47 +51,66 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+  openSnakbar(){
+    this._snackBar.open("Something went wrong while creating a new user", "Close");
+  }
+
+  registerClient(){
+    this.client.name=this.registerForm.value.name
+    this.client.age=this.registerForm.value.age
+    this.client.phone=this.registerForm.value.number
+    this.client.altphone="-"
+    this.client.urlToImage="https://i.ibb.co/XkhCy5M/noFoto.jpg"
+    this.client.address="-"
+    this.client.description="-"
+    return this.client
+  }
+  registerEmployee(){
+    this.employee.name=this.registerForm.value.name
+    this.employee.age=this.registerForm.value.age
+    this.employee.phone=this.registerForm.value.number
+    this.employee.altphone="-"
+    this.employee.urlToImage="https://i.ibb.co/XkhCy5M/noFoto.jpg"
+    this.employee.description="-"
+    return this.employee
+  }
+
   addNewuser(){
-    console.log(this.registerForm.value.typeUser)
-    let userid = this.users.pop().id;
-    console.log(userid)
-    if(this.registerForm.value.typeUser=="employee"){
-      this.employee.id=userid+1;
-      this.employee.name=this.registerForm.value.name;
-      this.employee.age=this.registerForm.value.age;
-      this.employee.service.id=this.registerForm.value.serviceId;
-      this.employee.phone=this.registerForm.value.number;
-      this.employee.urlToImage="https://i.ibb.co/XkhCy5M/noFoto.jpg";
-      this.employee.altphone="";
-      this.employee.description="";
-      this.authService.createEmployee(this.employee).subscribe( (response: any) => {
-        console.log('item added');
-      })
-    } else if(this.registerForm.value.typeUser=="client"){
-      this.client.id=userid+1;
-      this.client.name=this.registerForm.value.name;
-      this.client.age=this.registerForm.value.age;
-      this.client.phone=this.registerForm.value.number;
-      this.client.urlToImage="https://i.ibb.co/XkhCy5M/noFoto.jpg";
-      this.client.altphone="";
-      this.client.description="";
-      this.client.address="";
-      this.client.user.id=userid+1;
-      this.client.user.email=this.registerForm.value.email;
-      this.client.user.password=this.registerForm.value.password;
-      this.client.user.typeuser=this.registerForm.value.typeuser;
-      this.authService.createClient(this.client).subscribe( (response: any) => {
-        console.log('item added');
-      })
+    var role;
+    if (this.registerForm.value.typeUser=="client"){
+      role = "ROLE_CLIENT"
     }
-    console.log(this.client)
-    this.itemData.id=userid+1;
-    this.itemData.email=this.registerForm.value.email;
-    this.itemData.password=this.registerForm.value.password;
-    this.itemData.typeuser=this.registerForm.value.typeUser;
-    this.authService.signUp(this.itemData).subscribe( (response: any) => {
-      console.log('item added');
+   else{
+      role = "ROLE_EMPLOYEE"
+   }
+    const User={
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password,
+      roles: [role]
+    }
+    const UserLogin={
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password
+    }
+    this.authService.signUp(User).subscribe( (response: any) => {
+      console.log('user added');
+      if (this.registerForm.value.typeUser=="client"){
+        this.authService.createClient(this.registerClient(),response.id).subscribe( (source: any) => {
+          console.log('client added');
+        })
+        this.router.navigate(['login']).then();
+      }
+      else {
+        this.authService.createEmployee(this.registerEmployee(),response.id,this.registerForm.value.serviceId).subscribe( (source2: any) => {
+          console.log('employee added');
+        })
+        this.router.navigate(['login']).then();
+      }
     })
-    this.router.navigate(['login']).then();
+  }
+  signOut(){
+    localStorage.removeItem('token');
   }
 }
+
+

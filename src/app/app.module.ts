@@ -25,6 +25,7 @@ import {MatTableModule} from "@angular/material/table";
 import { AppRoutingModule } from './app-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { LoginComponent } from './login/pages/login/login.component';
 import { RegisterComponent } from './register/pages/register/register.component';
@@ -82,6 +83,7 @@ import { AddrequestDialogComponent } from './dialogs/pages/addrequest-dialog/add
     MatTableModule,
     MatSidenavModule,
     MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,7 +14,7 @@ export class HomeService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Authorization': 'Bearer ' + this.getCurrentUser().token
     })
   }
 
@@ -29,13 +29,13 @@ export class HomeService {
     return throwError('Something happened with request, please try again later');
   }
 
-  getCurrentUserType(){
+  getCurrentUser(){
     let currentUserString= localStorage.getItem('currentUser')
     if(currentUserString){
       //console.log(`current user:' ${currentUserString}`)
       let currentUser = (JSON.parse(currentUserString));
       //console.log(currentUser)
-      return currentUser.typeuser;
+      return currentUser;
     }else return null
   }
 
@@ -48,7 +48,7 @@ export class HomeService {
   }
 
   getById(id: any) {
-    if(this.getCurrentUserType()=='employee'){
+    if(this.getCurrentUser().roles[0]=='ROLE_EMPLOYEE'){
       return this.http.get(`${this.basePath}/employees/${id}`, this.httpOptions)
         .pipe(
           retry(2),
