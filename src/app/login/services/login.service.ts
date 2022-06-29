@@ -8,7 +8,7 @@ import {User} from "../model/user";
 })
 export class LoginService {
 
-  basePath = 'http://localhost:3000/api/v1/auth';
+  basePath = 'http://localhost:8080/api/v1/users/auth';
 
   constructor(private http: HttpClient) { }
 
@@ -29,9 +29,9 @@ export class LoginService {
     return throwError( ()  => new Error('Something happened with request, please try again later'));
   }
 
-  signIn(user: User){
+  signIn(user: any){
     return this.http
-      .post(`${this.basePath}/signin`, user)
+      .post(`${this.basePath}/sign-in`, user)
       .pipe(retry(2), catchError(this.handleError));
   }
 }

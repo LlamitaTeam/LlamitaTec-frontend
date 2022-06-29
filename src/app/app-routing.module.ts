@@ -11,11 +11,15 @@ import { ProfileEmployeeComponent } from './profile/pages/profile-employee/profi
 import { ProfileComponent } from './profile/pages/profile/profile.component';
 import { RegisterComponent } from './register/pages/register/register.component';
 import { ServicesComponent } from './services/pages/services/services.component';
+import { ConfigureregisterComponent } from './register/pages/configureregister/configureregister.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login',component:LoginComponent},
+  { path: '', redirectTo: '/register', pathMatch: 'full' },
   { path: 'register',component:RegisterComponent},
+  { path: '', redirectTo: '/configure', pathMatch: 'full' },
+  { path: 'configure',component:ConfigureregisterComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home',component:HomeComponent},
   { path: '', redirectTo: '/profile', pathMatch: 'full' },

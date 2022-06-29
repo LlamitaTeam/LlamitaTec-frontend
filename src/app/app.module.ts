@@ -25,6 +25,7 @@ import {MatTableModule} from "@angular/material/table";
 import { AppRoutingModule } from './app-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { LoginComponent } from './login/pages/login/login.component';
 import { RegisterComponent } from './register/pages/register/register.component';
@@ -38,6 +39,7 @@ import { ProfileEmployeeUserComponent } from './profile/pages/profile-employee-u
 import { HomeEmployeeComponent } from './home/pages/home-employee/home-employee.component';
 import { CancelDialogComponent } from './dialogs/pages/cancel-dialog/cancel-dialog.component';
 import { AddrequestDialogComponent } from './dialogs/pages/addrequest-dialog/addrequest-dialog.component';
+import { ConfigureregisterComponent } from './register/pages/configureregister/configureregister.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { AddrequestDialogComponent } from './dialogs/pages/addrequest-dialog/add
     ProfileEmployeeUserComponent,
     HomeEmployeeComponent,
     CancelDialogComponent,
-    AddrequestDialogComponent
+    AddrequestDialogComponent,
+    ConfigureregisterComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +85,7 @@ import { AddrequestDialogComponent } from './dialogs/pages/addrequest-dialog/add
     MatTableModule,
     MatSidenavModule,
     MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

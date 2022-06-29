@@ -29,7 +29,10 @@ export class Employee {
         id:0,
         email:"",
         password:"",
-        typeuser:""
+        roles: [{
+          id: 0, 
+          name: ""
+        }]
       }
     }
   }

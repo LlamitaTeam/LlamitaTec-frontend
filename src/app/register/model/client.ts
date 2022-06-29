@@ -1,6 +1,4 @@
-import { User } from "./user";
 export class Client {
-    id: number;
     name: string;
     age: number;
     phone: string;
@@ -8,10 +6,8 @@ export class Client {
     urlToImage: string;
     address: string;
     description: string;
-    user: User;
 
     constructor() {
-      this.id = 0;
       this.name = "";
       this.age = 0;
       this.phone = "";
@@ -19,11 +15,5 @@ export class Client {
       this.urlToImage="";
       this.address = "";
       this.description = "";
-      this.user={
-        id:0,
-        email:"",
-        password:"",
-        typeuser:""
-      }
     }
   }

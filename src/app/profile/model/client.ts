@@ -22,8 +22,11 @@ export class Client {
       this.user={
         id:0,
         email:"",
-        typeuser:"",
-        password:""
+        password:"",
+        roles: [{
+          id: 0, 
+          name: ""
+        }]
       }
     }
   }
