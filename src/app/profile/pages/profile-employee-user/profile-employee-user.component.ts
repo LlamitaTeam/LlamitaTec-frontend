@@ -48,8 +48,9 @@ export class ProfileEmployeeUserComponent implements OnInit {
   }
 
   getProfiles() {
-    this.newProfileService.getById(this.getCurrentUserId().id).subscribe( (response: any) => {
+    this.newProfileService.getById(this.getCurrentUserId()).subscribe( (response: any) => {
       this.employee = response;
+      console.log(response)
     })
   }
 

@@ -1,0 +1,37 @@
+<div class="body">
+  <mat-card class="login">
+    <h1 class="h3 mb-3 fw-normal">Finalize su configuración</h1>
+    <p>Facil y sencillo</p>
+    <form [formGroup]="registerForm">
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Nombres y Apellidos</mat-label>
+        <input autocomplete="off" matInput placeholder="Tu nombre completo" formControlName="name" required>
+        <mat-error *ngIf="name?.errors?.['required']">Name is required</mat-error>
+        <mat-error *ngIf="name?.errors?.['minLength'] && !name?.errors?.['required']">Name must have at least 6 characters</mat-error>
+      </mat-form-field>
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Edad</mat-label>
+        <input autocomplete="off" matInput placeholder="Tu edad" formControlName="age" required>
+        <mat-error *ngIf="age?.errors?.['required']">Age is required</mat-error>
+      </mat-form-field>
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Numero</mat-label>
+        <input autocomplete="off" matInput placeholder="Tu Numero" formControlName="number" required>
+        <mat-error *ngIf="number?.errors?.['required']">Number is required</mat-error>
+        <mat-error *ngIf="number?.errors?.['pattern'] && !number?.errors?.['required']">Only numbers allowed</mat-error>
+        <mat-error *ngIf="!number?.errors?.['required']">Number must be valid</mat-error>
+      </mat-form-field>
+      <mat-form-field class="ancho" appearance="fill" *ngIf="getCurrentUser().roles[0] === 'ROLE_EMPLOYEE'" >
+        <mat-label>Seleccione el servicio que ofrecera</mat-label>
+        <mat-select formControlName="serviceId" required>
+          <mat-option value=1>Electricity</mat-option>
+          <mat-option value=2>Plumbing</mat-option>
+          <mat-option value=3>Computer repair</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <button (click)="addNewuser()" mat-raised-button mat-button color="primary" class="ancho button" [disabled]="!registerForm.valid"><u>Terminar configuración</u></button>
+      <br>
+    </form>
+  </mat-card>
+</div>

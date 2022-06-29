@@ -19,7 +19,6 @@ export class ProfileEmployeeComponent implements OnInit {
   client: Client = new Client();
   requests:Array<any> = [];
   service: Service = new Service();
-  itemData : Request= new Request();
 
   constructor(private route: ActivatedRoute, private newProfileEService: ProfileService, public router: Router, public dialog: MatDialog) { }
 
@@ -55,29 +54,25 @@ export class ProfileEmployeeComponent implements OnInit {
     })
   }
 
-  getClient(){
-    this.newProfileEService.getById(this.getCurrentUserId()).subscribe( (response: any) => {
-      this.client= response;
-    })
-  }
-
   addNewRequest() {
-    let request=this.requests.length;
-    this.itemData.id = request+1;
-    this.itemData.title = `Servicio solicitado por ${this.client.name}`;
-    this.itemData.description = `Servicio de ${this.employee.name}`;
-    this.itemData.urlToImage = this.employee.service.urlToImage;
-    this.itemData.paid = false;
-    this.itemData.service = this.employee.service;
-    this.itemData.employee = this.employee;
-    this.itemData.client = this.client;
-    console.log(this.itemData.client.user)
-    localStorage.setItem('itemDataa', JSON.stringify(this.itemData));
-    const dialogRef = this.dialog.open(AddrequestDialogComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    this.newProfileEService.getById(this.getCurrentUserId()).subscribe( (response: any) => {
+      this.newProfileEService.getByEmployeeId(this.route.snapshot.paramMap.get('id')).subscribe( (result: any) => {
+        const request = {
+          title: `Servicio solicitado por ${response.name}`,
+          description: `Servicio de ${result.name}`,
+          urlToImage: result.service.urlToImage,
+          paid: false,
+        }
+        localStorage.setItem('itemDataa', JSON.stringify(request));
+        localStorage.setItem('clientId',JSON.stringify(response.id))
+        localStorage.setItem('employeeId',JSON.stringify(result.id))
+        localStorage.setItem('serviceId',JSON.stringify(result.service.id))
+        const dialogRef = this.dialog.open(AddrequestDialogComponent);
+        dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
     });
-
+      })
+    })
   }
 
 }

@@ -35,8 +35,11 @@ export class Request {
         user: {
           id:0,
           email:"",
-          typeuser:"",
-          password:""
+          password:"",
+          roles: [{
+            id: 0, 
+            name: ""
+          }]
         }
       }
       this.employee={
@@ -56,8 +59,11 @@ export class Request {
         user: {
           id:0,
           email:"",
-          typeuser:"",
-          password:""
+          password:"",
+          roles: [{
+            id: 0, 
+            name: ""
+          }]
         }
       }
     }

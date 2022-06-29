@@ -29,20 +29,24 @@ export class LoginComponent implements OnInit {
   getCurrentUserType(){
     let currentUserString= localStorage.getItem('currentUser')
     if(currentUserString){
-      //console.log(`current user:' ${currentUserString}`)
+      /*console.log(`current user:' ${currentUserString}`)*/
       let currentUser = (JSON.parse(currentUserString));
-      //console.log(currentUser)
-      return currentUser.typeuser;
+      return currentUser.roles[0];
     }else return null
   }
 
   signIn(){
-    this.authService.signIn(this.loginForm.value).subscribe((response: any) =>{
-      localStorage.setItem('accessToken', JSON.stringify(response.accessToken));
-      localStorage.setItem('currentUser', JSON.stringify(response.user));
+    const User={
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    }
+    this.authService.signIn(User).subscribe((response: any) =>{
+      localStorage.setItem('accessToken', JSON.stringify(response.token));
+      localStorage.setItem('currentUser', JSON.stringify(response));
+      console.log(response)
       this.loginForm.reset();
-      console.log(`accessToken: ${localStorage.getItem('accessToken')}`);
-      if(this.getCurrentUserType()=='employee'){
+      /*console.log(`${localStorage.getItem('accessToken')}`);*/
+      if(this.getCurrentUserType()=='ROLE_EMPLOYEE'){
         this.router.navigate(['homeemployee']).then();
       }
       else{

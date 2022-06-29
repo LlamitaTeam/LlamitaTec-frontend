@@ -2,12 +2,14 @@ export class User {
     id: number;
     email: string;
     password: string;
-    typeuser: string;
-
+    roles: any;
     constructor() {
       this.id = 0;
       this.email = "";
       this.password = "";
-      this.typeuser = "";
+      this.roles = [{
+        id: 0, 
+        name: ""
+      }]
     }
   }

@@ -182,15 +182,15 @@
       "typeuser": "client"
     },
     {
-      "email": "rosmery.moran@gmail.com",
+      "email": "rody.velasquez@gmail.com",
       "password": "$2a$10$s.anJF91S9v7T7E2vpTGj.6Pl1YMZ6Z0jvmUJupCxIYYGS5dAMqTC",
       "id": 2,
-      "typeuser": "client"
+      "typeuser": "employee"
     },
     {
-      "email": "silvia.rivas@gmail.com",
+      "email": "darwin.sara@gmail.com",
       "password": "$2a$10$s.anJF91S9v7T7E2vpTGj.6Pl1YMZ6Z0jvmUJupCxIYYGS5dAMqTC",
-      "typeuser": "client",
+      "typeuser": "employee",
       "id": 3
     },
     {
@@ -200,10 +200,10 @@
       "typeuser": "client"
     },
     {
-      "email": "darwin.sara@gmail.com",
+      "email": "xd@gmail.com",
       "password": "$2a$10$s.anJF91S9v7T7E2vpTGj.6Pl1YMZ6Z0jvmUJupCxIYYGS5dAMqTC",
       "id": 5,
-      "typeuser": "employee"
+      "typeuser": "client"
     },
     {
       "email": "galileo.sara@gmail.com",
@@ -218,10 +218,10 @@
       "typeuser": "employee"
     },
     {
-      "email": "rody.velasquez@gmail.com",
+      "email": "rosmery.moran@gmail.com",
       "password": "$2a$10$s.anJF91S9v7T7E2vpTGj.6Pl1YMZ6Z0jvmUJupCxIYYGS5dAMqTC",
       "id": 8,
-      "typeuser": "employee"
+      "typeuser": "client"
     },
     {
       "email": "rocman.carmon@gmail.com",

@@ -15,12 +15,12 @@
             </mat-form-field>
         </div>
         <mat-card-content>
-            <h3>Your information</h3>
-            <div> {{client.name}} </div>   
-            <h3>Contact</h3>
+            <h2>Your information</h2>
+            <div><h3>{{client.name}}</h3></div>   
+            <h2>Contact</h2>
             <ul>
-                <li>{{client.user.email}}</li>
-                <li *ngIf="edit==false">{{client.phone}}</li>
+                <li><h3>{{client.user.email}}</h3></li>
+                <li *ngIf="edit==false"><h3>{{client.phone}}</h3></li>
                 <li  *ngIf="edit">
                     <mat-form-field appearance="fill" *ngIf="edit">
                         <mat-label>New number</mat-label>
@@ -29,7 +29,7 @@
                         <mat-error *ngIf="!number?.errors?.['required']">Number must be valid</mat-error>
                     </mat-form-field>
                 </li>
-                <li *ngIf="edit==false">{{client.altphone}}</li>
+                <li *ngIf="edit==false"><h3>{{client.altphone}}</h3></li>
                 <li *ngIf="edit">
                     <mat-form-field appearance="fill">
                         <mat-label>New alternative number</mat-label>
@@ -41,32 +41,32 @@
             </ul>
         </mat-card-content>
         <mat-card-content>
-            <h3>Your adress</h3>
+            <h2>Your adress</h2>
             <mat-form-field appearance="fill" *ngIf="edit">
                 <mat-label>New adress</mat-label>
                 <input autocomplete="off" matInput formControlName="adress">
                 <mat-error *ngIf="adress?.errors?.['maxLength'] && !adress?.errors?.['required']">Adress must have less than 60 characters</mat-error>
             </mat-form-field>
-            <div *ngIf="edit==false">{{client.address}}</div>
+            <div *ngIf="edit==false"><h3>{{client.address}}</h3></div>
         </mat-card-content>
         </mat-card>
     </div>
     <div class="content">
-        <mat-card class="Ccard2 ancho">
+        <mat-card class="Ccard2">
             <mat-card-content >
-                <h3>Details</h3>
+                <h2>Details</h2>
                 <mat-form-field appearance="fill" *ngIf="edit" class="ancho">
                     <mat-label>New description</mat-label>
                     <input autocomplete="off" matInput formControlName="description">
                     <mat-error *ngIf="description?.errors?.['maxLength'] && !description?.errors?.['required']">Description must have less than 100 characters</mat-error>
                 </mat-form-field>
-                <div *ngIf="edit==false">{{client.description}}</div>
+                <div *ngIf="edit==false"><h3>{{client.description}}</h3></div>
             </mat-card-content>
-            </mat-card>
+        </mat-card>
     </div>
+    <section class="button margin">
+        <button mat-raised-button (click)="edit=!edit" *ngIf="edit==false">Edit Profile</button>
+        <button mat-raised-button (click)="edit=!edit" *ngIf="edit">Cancel changes</button>
+        <button mat-raised-button (click)="UpdateProfile()" *ngIf="edit" [disabled]="!profileForm.valid">Update changes</button>
+    </section>
 </form>
-<section class="button margin">
-    <button mat-raised-button (click)="edit=!edit" *ngIf="edit==false">Edit Profile</button>
-    <button mat-raised-button (click)="edit=!edit" *ngIf="edit">Cancel changes</button>
-    <button mat-raised-button (click)="UpdateProfile()" *ngIf="edit" [disabled]="!profileForm.valid">Update changes</button>
-</section>

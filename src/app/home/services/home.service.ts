@@ -8,12 +8,13 @@ import {catchError, Observable, retry, throwError} from "rxjs";
 export class HomeService {
 
   basePath = 'http://localhost:8080/api/v1/requests';
-
+  basePath2 = 'http://localhost:8080/api/v1/clients';
+  basePath3= 'http://localhost:8080/api/v1/employees';
   constructor(private http: HttpClient) { }
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Authorization': 'Bearer ' + this.getCurrentUser().token
     })
   }
 
@@ -28,13 +29,13 @@ export class HomeService {
     return throwError('Something happened with request, please try again later');
   }
 
-  getCurrentUserType(){
+  getCurrentUser(){
     let currentUserString= localStorage.getItem('currentUser')
     if(currentUserString){
       //console.log(`current user:' ${currentUserString}`)
       let currentUser = (JSON.parse(currentUserString));
       //console.log(currentUser)
-      return currentUser.typeuser;
+      return currentUser;
     }else return null
   }
 
@@ -47,8 +48,8 @@ export class HomeService {
   }
 
   getById(id: any) {
-    if(this.getCurrentUserType()=='employee'){
-      return this.http.get(`${this.basePath}/employees/1`, this.httpOptions)
+    if(this.getCurrentUser().roles[0]=='ROLE_EMPLOYEE'){
+      return this.http.get(`${this.basePath}/employees/${id}`, this.httpOptions)
         .pipe(
           retry(2),
           catchError(this.handleError)
@@ -62,6 +63,23 @@ export class HomeService {
       )
     }
   }
+
+  getByEmployeeId(id: any) {
+    return this.http.get(`${this.basePath3}/users/${id}`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  getByClientId(id: any) {
+    return this.http.get(`${this.basePath2}/${id}`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
   deleteById(id: any) {
     return this.http.delete(`${this.basePath}/${id}`, this.httpOptions)
       .pipe(
@@ -69,13 +87,4 @@ export class HomeService {
         catchError(this.handleError)
       )
   }
-  
-  getClientById(id: any) {
-    return this.http.get(`http://localhost:3000/clients/${id}`, this.httpOptions)
-    .pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
-  }
-
 }

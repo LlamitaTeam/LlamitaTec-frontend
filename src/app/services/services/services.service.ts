@@ -13,7 +13,7 @@ export class ServicesService {
   
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Authorization': 'Bearer ' + this.getCurrentUser().token
     })
   }
 
@@ -26,6 +26,14 @@ export class ServicesService {
       );
     }
     return throwError('Something happened with request, please try again later');
+  }
+
+  getCurrentUser(){
+    let currentUserString= localStorage.getItem('currentUser')
+    if(currentUserString){
+      let currentUser = (JSON.parse(currentUserString));
+      return currentUser;
+    }else return null
   }
 
   create(item: object):Observable<object> {

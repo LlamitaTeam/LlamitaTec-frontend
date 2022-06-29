@@ -18,13 +18,17 @@ export class AddrequestDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.request=this.getCurrentitemData()
+    this.getCurrentemployeeId()
+    this.getCurrentclientId()
+    this.getCurrentserviceId()
+    console.log(this.getCurrentclientId(),this.getCurrentemployeeId(),this.getCurrentserviceId())
   }
 
   get description() { return this.descriptionForm.get('description'); }
 
   createData(){
     this.request.description=this.descriptionForm.value.description
-    this.newProfileEService.createRequest(this.request.client.id,this.request.employee.id,this.request.service.id,this.request).subscribe( (response: any) => {
+    this.newProfileEService.createRequest(this.getCurrentclientId(),this.getCurrentemployeeId(),this.getCurrentserviceId(),this.request).subscribe( (response: any) => {
       console.log('item added');
     })
     this.created=true;
@@ -33,6 +37,30 @@ export class AddrequestDialogComponent implements OnInit {
 
   getCurrentitemData(){
     let currentItemData= localStorage.getItem('itemDataa')
+    if(currentItemData){
+      let itemData = (JSON.parse(currentItemData));
+      return itemData;
+    }else return null
+  }
+
+  getCurrentclientId(){
+    let currentItemData= localStorage.getItem('clientId')
+    if(currentItemData){
+      let itemData = (JSON.parse(currentItemData));
+      return itemData;
+    }else return null
+  }
+
+  getCurrentemployeeId(){
+    let currentItemData= localStorage.getItem('employeeId')
+    if(currentItemData){
+      let itemData = (JSON.parse(currentItemData));
+      return itemData;
+    }else return null
+  }
+
+  getCurrentserviceId(){
+    let currentItemData= localStorage.getItem('serviceId')
     if(currentItemData){
       let itemData = (JSON.parse(currentItemData));
       return itemData;

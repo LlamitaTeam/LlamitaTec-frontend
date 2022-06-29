@@ -49,10 +49,12 @@ export class ProfileComponent implements OnInit {
   getProfiles() {
     this.newProfileService.getById(this.getCurrentUserId()).subscribe( (response: any) => {
       this.client = response;
+      console.log(response)
     })
   }
 
   UpdateProfile() {
+    this.itemData = this.client
     this.itemData.id = this.client.id;
     this.itemData.name = this.client.name;
     this.itemData.age = this.client.age;
@@ -67,7 +69,7 @@ export class ProfileComponent implements OnInit {
     }else{
       this.itemData.altphone = this.profileForm.value.altnumber;
     }
-    if(this.profileForm.value.address==""){
+    if(this.profileForm.value.adress==""){
       this.itemData.address = this.client.address;
     }else{
       this.itemData.address = this.profileForm.value.adress;
