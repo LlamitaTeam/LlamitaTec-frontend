@@ -15,7 +15,7 @@ export class RegisterService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnb2dhbEBnbWFpbC5jb20iLCJpYXQiOjE2NTYzNzc2NjMsImV4cCI6MTY1Njk4MjQ2M30.d5SuP0DS1gRfEtbep7Ebm4NGmCNlHUwUDMIQ6YiCouk'
+      'Authorization': 'Bearer ' + this.getCurrentToken()
     })
   }
 
@@ -41,7 +41,7 @@ export class RegisterService {
   }
 
   getCurrentToken(){
-    let currentTokenString= localStorage.getItem('token')
+    let currentTokenString= localStorage.getItem('accessToken')
     if(currentTokenString){
       let currentToken = (JSON.parse(currentTokenString));
       return currentToken;
