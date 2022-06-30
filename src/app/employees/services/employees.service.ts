@@ -25,7 +25,7 @@ export class EmployeesService {
         `Backend returned code ${error.status}, body was: ${error.error}`
       );
     }
-    return throwError('Something happened with request, please try again later');
+    return throwError('Something happened with this request. Please try again later.');
   }
 
   
