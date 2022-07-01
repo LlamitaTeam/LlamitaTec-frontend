@@ -32,12 +32,10 @@ export class HomeEmployeeComponent implements OnInit {
   getAllRequests(id:any) {
     this.newHomeService.getById(id).subscribe( (response: any) => {
       this.request = response;
-      console.log(response)
     })
   }
   getByEmployeeId(){
     this.newHomeService.getByEmployeeId(this.getCurrentUserId()).subscribe( (response: any) => {
-      console.log(response.id)
       this.getAllRequests(response.id)
     })
   }
@@ -46,7 +44,6 @@ export class HomeEmployeeComponent implements OnInit {
     localStorage.setItem('RequestId', JSON.stringify(id));
     const dialogRef = this.dialog.open(CancelDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 }

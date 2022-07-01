@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(User).subscribe((response: any) =>{
       localStorage.setItem('accessToken', JSON.stringify(response.token));
       localStorage.setItem('currentUser', JSON.stringify(response));
-      console.log(response)
       this.loginForm.reset();
       /*console.log(`${localStorage.getItem('accessToken')}`);*/
       if(this.getCurrentUserType()=='ROLE_EMPLOYEE'){

@@ -69,7 +69,6 @@ export class ProfileEmployeeComponent implements OnInit {
         localStorage.setItem('serviceId',JSON.stringify(result.service.id))
         const dialogRef = this.dialog.open(AddrequestDialogComponent);
         dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
     });
       })
     })

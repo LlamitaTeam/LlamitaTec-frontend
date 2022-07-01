@@ -55,9 +55,9 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Numero de Tarjeta</mat-label>
-            <input autocomplete="off" type="number" matInput formControlName="numberCard" required>
-            <mat-error *ngIf="numberCard?.errors?.['required']">Number Card is required</mat-error>
-            <mat-error *ngIf="!numberCard?.errors?.['required']">Number Card must be valid</mat-error>
+            <input autocomplete="off" type="text" matInput formControlName="numberCard" required>
+            <mat-error *ngIf="numberCard?.errors?.['required']">Card Number is required</mat-error>
+            <mat-error *ngIf="numberCard?.errors?.['pattern'] && !numberCard?.errors?.['required']">Card Number must be valid</mat-error>
         </mat-form-field>
         <div class="subgroup">
             <mat-form-field class="m-r-1" appearance="outline">

@@ -21,7 +21,6 @@ export class AddrequestDialogComponent implements OnInit {
     this.getCurrentemployeeId()
     this.getCurrentclientId()
     this.getCurrentserviceId()
-    console.log(this.getCurrentclientId(),this.getCurrentemployeeId(),this.getCurrentserviceId())
   }
 
   get description() { return this.descriptionForm.get('description'); }
@@ -29,7 +28,6 @@ export class AddrequestDialogComponent implements OnInit {
   createData(){
     this.request.description=this.descriptionForm.value.description
     this.newProfileEService.createRequest(this.getCurrentclientId(),this.getCurrentemployeeId(),this.getCurrentserviceId(),this.request).subscribe( (response: any) => {
-      console.log('item added');
     })
     this.created=true;
     this.router.navigate(['home']).then();

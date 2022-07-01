@@ -6,9 +6,9 @@
 <mat-toolbar class="nav-bar" *ngIf="(router.url !== '/login' && router.url !== '/configure')">
     <span class="spaces">LlamitaTEC</span>
     <span class="spacer"></span>
-    <a class="text" [routerLink]="'/home'" href="#">Home</a>
-    <a class="text" [routerLink]="'/profile'" href="#">Profile</a>
-    <a class="text" [routerLink]="'/services'" href="#">Services</a>
+    <a class="text" [routerLink]="'/home'" href="#">Inicio</a>
+    <a class="text" [routerLink]="'/profile'" href="#">Perfil</a>
+    <a class="text" [routerLink]="'/services'" href="#">Servicios</a>
     <a class="text" (click)="signOut()" href="#">Log-out</a>
   </mat-toolbar>
   <router-outlet></router-outlet>
@@ -18,8 +18,8 @@
   <mat-toolbar class="nav-bar" *ngIf="(router.url !== '/login' && router.url !== '/configure')">
       <span class="spaces">LlamitaTEC</span>
       <span class="spacer"></span>
-      <a class="text" [routerLink]="'/homeemployee'" href="#">Home</a>
-      <a class="text" [routerLink]="'/profileemployee'" href="#">Profile</a>
+      <a class="text" [routerLink]="'/homeemployee'" href="#">Inicio</a>
+      <a class="text" [routerLink]="'/profileemployee'" href="#">Perfil</a>
       <a class="text" (click)="signOut()" href="#">Log-out</a>
     </mat-toolbar>
     <router-outlet></router-outlet>

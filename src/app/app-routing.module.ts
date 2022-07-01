@@ -7,6 +7,7 @@ import { HomeComponent } from './home/pages/home/home.component';
 import { LoginComponent } from './login/pages/login/login.component';
 import { PaymentComponent } from './payment/pages/payment/payment.component';
 import { ProfileEmployeeUserComponent } from './profile/pages/profile-employee-user/profile-employee-user.component';
+import { ProfileClientComponent } from './profile/pages/profile-client/profile-client.component';
 import { ProfileEmployeeComponent } from './profile/pages/profile-employee/profile-employee.component';
 import { ProfileComponent } from './profile/pages/profile/profile.component';
 import { RegisterComponent } from './register/pages/register/register.component';
@@ -30,6 +31,8 @@ const routes: Routes = [
   { path: 'employees/:id',component:EmployeesComponent},
   { path: '', redirectTo: '/employees/information/:id', pathMatch: 'full' },
   { path: 'employees/information/:id',component:ProfileEmployeeComponent},
+  { path: '', redirectTo: '/client/information/:id', pathMatch: 'full' },
+  { path: 'client/information/:id',component:ProfileClientComponent},
   { path: '', redirectTo: '/payment/:id', pathMatch: 'full' },
   { path: 'payment/:id',component:PaymentComponent},
   { path: '', redirectTo: '/profileemployee', pathMatch: 'full' },

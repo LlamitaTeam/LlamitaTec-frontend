@@ -154,19 +154,16 @@
   ],
   "services": [
     {
-      "id": 1,
       "name": "Electriciy",
       "urlToImage": "https://i.ibb.co/J29j6BJ/electricianp.jpg",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In vero amet fugiat repudiandae aut similique odit natus maxime praesentium."
     },
     {
-      "id": 2,
       "name": "Plumbing",
       "urlToImage": "https://i.ibb.co/26xs99Q/plumberp.jpg",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In vero amet fugiat repudiandae aut similique odit natus maxime praesentium."
     },
     {
-      "id": 3,
       "name": "Computer repair",
       "urlToImage": "https://i.ibb.co/FzfGfGp/computer-repair.jpg",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In vero amet fugiat repudiandae aut similique odit natus maxime praesentium."

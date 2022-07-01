@@ -8,7 +8,7 @@ import {User} from "../model/user";
 })
 export class LoginService {
 
-  basePath = 'http://localhost:8080/api/v1/users/auth';
+  basePath = 'https://api-llamitatec.uc.r.appspot.com/api/v1/users/auth';
 
   constructor(private http: HttpClient) { }
 
