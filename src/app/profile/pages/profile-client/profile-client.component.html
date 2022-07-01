@@ -1,0 +1,33 @@
+<div class="content-text">
+    <h1>Profile</h1>
+</div>
+
+<mat-divider></mat-divider>
+<div class="content">
+    <mat-card class="Ccard" >
+    <img class="Ccard-image" mat-card-image [src]="client.urlToImage" alt="Photo of a client">
+    <mat-card-content>
+        <h2>Datos del cliente</h2>
+            <h3>{{client.name}}</h3>
+        <h2>Contacto</h2>
+        <ul>
+            <li><h3>{{client.user.email}}</h3></li>
+            <li><h3>{{client.phone}}</h3></li>
+            <li><h3>{{client.altphone}}</h3></li>
+        </ul>
+    </mat-card-content>
+    </mat-card>
+</div>
+<div class="content">
+    <mat-card class="Ccard2">
+        <mat-card-content>
+            <h2>Detalles</h2>
+            <h3>{{client.description}}</h3>
+            <h2>Dirección</h2>
+            <h3>{{client.address}}</h3>
+        </mat-card-content>
+        </mat-card>
+</div>
+<section class="button margin">
+    <button mat-raised-button [routerLink]="['/homeemployee']">REGRESAR</button>
+</section>

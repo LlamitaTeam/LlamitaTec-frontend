@@ -7,9 +7,9 @@
     <mat-card class="Ccard" >
     <img class="Ccard-image" mat-card-image [src]="employee.urlToImage" alt="Photo of a employee">
     <mat-card-content>
-        <h2>Your information</h2>
+        <h2>Datos del empleado</h2>
             <h3>{{employee.name}}</h3>
-        <h2>Contact</h2>
+        <h2>Contacto</h2>
         <ul>
             <li><h3>{{employee.user.email}}</h3></li>
             <li><h3>{{employee.phone}}</h3></li>
@@ -21,11 +21,11 @@
 <div class="content">
     <mat-card class="Ccard2">
         <mat-card-content>
-            <h2>Details</h2>
+            <h2>Detalles</h2>
             <h3>{{employee.description}}</h3>
         </mat-card-content>
         </mat-card>
 </div>
 <section class="button margin">
-    <button mat-raised-button (click)="addNewRequest()">REQUEST</button>
+    <button mat-raised-button (click)="addNewRequest()">Solicitar</button>
 </section>

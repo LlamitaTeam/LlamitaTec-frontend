@@ -11,7 +11,6 @@ export class CancelDialogComponent implements OnInit {
   constructor(private newHomeService: HomeService) { }
 
   ngOnInit(): void {
-    console.log(this.getCurrentRequestId())
   }
 
   getCurrentRequestId(){
@@ -24,7 +23,6 @@ export class CancelDialogComponent implements OnInit {
 
   deleteRequest() {
     this.newHomeService.deleteById(this.getCurrentRequestId()).subscribe( (response: any) => {
-      console.log('item deleted')
     })
     window.location.reload();
   }

@@ -15,9 +15,9 @@
             </mat-form-field>
         </div>
         <mat-card-content>
-            <h2>Your information</h2>
+            <h2>Tus datos</h2>
             <div><h3>{{client.name}}</h3></div>   
-            <h2>Contact</h2>
+            <h2>Contacto</h2>
             <ul>
                 <li><h3>{{client.user.email}}</h3></li>
                 <li *ngIf="edit==false"><h3>{{client.phone}}</h3></li>
@@ -41,7 +41,7 @@
             </ul>
         </mat-card-content>
         <mat-card-content>
-            <h2>Your adress</h2>
+            <h2>Dirección</h2>
             <mat-form-field appearance="fill" *ngIf="edit">
                 <mat-label>New adress</mat-label>
                 <input autocomplete="off" matInput formControlName="adress">
@@ -54,7 +54,7 @@
     <div class="content">
         <mat-card class="Ccard2">
             <mat-card-content >
-                <h2>Details</h2>
+                <h2>Detalles</h2>
                 <mat-form-field appearance="fill" *ngIf="edit" class="ancho">
                     <mat-label>New description</mat-label>
                     <input autocomplete="off" matInput formControlName="description">

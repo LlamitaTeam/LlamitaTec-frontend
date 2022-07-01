@@ -32,7 +32,7 @@ export class PaymentComponent implements OnInit {
     name: ['', [Validators.required, Validators.minLength(6)]],
     lastname: ['', [Validators.required, Validators.minLength(6)]],
     dni: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(8),Validators.minLength(8)], updateOn: 'change'}],
-    numberCard: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$')], updateOn: 'change'}],
+    numberCard: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(16),Validators.minLength(16)], updateOn: 'change'}],
     csv: ['', {validators: [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(3),Validators.minLength(3)], updateOn: 'change'}],
     date: ['', [Validators.required]],
     address: ['', [Validators.required, Validators.minLength(6)]],
@@ -62,8 +62,6 @@ export class PaymentComponent implements OnInit {
   updateRequest(){
     this.itemData.paid=true;
     this.newPaymentService.updateRequest(this.itemData.id,this.itemData).subscribe( (response: any) => {
-      console.log('item updated');
-      console.log(response);
     })
     this.router.navigate(['home']).then();
   }

@@ -50,7 +50,6 @@ export class ProfileEmployeeUserComponent implements OnInit {
   getProfiles() {
     this.newProfileService.getById(this.getCurrentUserId()).subscribe( (response: any) => {
       this.employee = response;
-      console.log(response)
     })
   }
 
@@ -81,8 +80,6 @@ export class ProfileEmployeeUserComponent implements OnInit {
       this.itemData.urlToImage = this.profileForm.value.urlToImage;
     }
     this.newProfileService.updateProfile(this.itemData.id,this.itemData).subscribe( (response: any) => {
-      console.log('item updated');
-      console.log(response);
     })
     this.itemData = new Employee();
     this.edit!=this.edit

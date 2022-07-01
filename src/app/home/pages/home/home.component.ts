@@ -10,7 +10,7 @@ import { CancelDialogComponent } from 'src/app/dialogs/pages/cancel-dialog/cance
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  show:boolean=false;
+  show:boolean=true;
   request:Array<any> = [];
   constructor(private newHomeService: HomeService, public router: Router, public dialog: MatDialog) { }
 
@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
   getAllRequests(id:any) {
     this.newHomeService.getById(id).subscribe( (response: any) => {
       this.request = response;
-      console.log(response)
     })
   }
 
@@ -43,8 +42,10 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('RequestId', JSON.stringify(id));
     const dialogRef = this.dialog.open(CancelDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
-
+  
+  mostrar(){
+    this.show=!this.show
+  }
 }

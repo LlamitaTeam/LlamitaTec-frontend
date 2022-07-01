@@ -40,6 +40,7 @@ import { HomeEmployeeComponent } from './home/pages/home-employee/home-employee.
 import { CancelDialogComponent } from './dialogs/pages/cancel-dialog/cancel-dialog.component';
 import { AddrequestDialogComponent } from './dialogs/pages/addrequest-dialog/addrequest-dialog.component';
 import { ConfigureregisterComponent } from './register/pages/configureregister/configureregister.component';
+import { ProfileClientComponent } from './profile/pages/profile-client/profile-client.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ConfigureregisterComponent } from './register/pages/configureregister/c
     HomeEmployeeComponent,
     CancelDialogComponent,
     AddrequestDialogComponent,
-    ConfigureregisterComponent
+    ConfigureregisterComponent,
+    ProfileClientComponent
   ],
   imports: [
     BrowserModule,
