@@ -59,8 +59,8 @@
             </mat-card>
     </div>
     <section class="button margin">
-        <button mat-raised-button (click)="edit=!edit" *ngIf="edit==false">Edit Profile</button>
-        <button mat-raised-button (click)="edit=!edit" *ngIf="edit">Cancel changes</button>
+        <button mat-raised-button (click)="edit=!edit" *ngIf="edit==false">Editar Perfil</button>
+        <button mat-raised-button (click)="edit=!edit" *ngIf="edit">Cancelar cambios</button>
         <button mat-raised-button (click)="UpdateProfile()" *ngIf="edit" [disabled]="!profileForm.valid">Update changes</button>
     </section>
 </form>
