@@ -7,7 +7,7 @@ import {catchError, retry, throwError} from "rxjs";
 })
 export class PaymentService {
 
-  basePath = 'http://localhost:8080/api/v1/requests';
+  basePath = 'https://api-llamitatec.uc.r.appspot.com/api/v1/requests';
 
   constructor(private http: HttpClient) { }
 

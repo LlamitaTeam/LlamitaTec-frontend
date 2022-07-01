@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    console.log(`${localStorage.getItem('accessToken')}`);
   }
 
   get name() { return this.registerForm.controls['name'];}

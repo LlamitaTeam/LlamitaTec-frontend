@@ -21,6 +21,9 @@ export class PaymentComponent implements OnInit {
   cards: Card[] = [
     {value: 'visa', viewValue: 'Visa'},
     {value: 'master', viewValue: 'MasterCard'},
+    {value: 'bcp', viewValue: 'Banco de Crédito BCP'},
+    {value: 'yape', viewValue: 'Yape'},
+    {value: 'plin', viewValue: 'Plin'},
   ];
   showNext:boolean=false
   showDialog:boolean=false
